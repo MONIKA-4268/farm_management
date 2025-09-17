@@ -8,21 +8,94 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <style>
     body {
-      background: linear-gradient(120deg, #e0f7fa 0%, #ffe0b2 100%);
+      background: #0483c6; /* Flat vibrant blue */
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #222; /* Default dark grey text for contrast on white */
     }
-    .navbar { background: #fff3e0 !important; }
-    .navbar-brand { color: #388e3c !important; font-weight: bold; font-size: 2rem; letter-spacing: 2px; }
-    .nav-link.active { color: #338851 !important; font-weight: bold; }
-    .tab-section { display: none; animation: fadeInDown 0.4s; padding-top: 1rem; }
-    .active-section { display: block !important; }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0);} }
+    .navbar {
+      background: #0483c6 !important; /* Match screenshot blue */
+    }
+    .navbar-brand {
+      color: #1b355c !important; /* Deep blue text */
+      font-weight: bold;
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+    .nav-link {
+      color: #f7fafc !important; /* Light text on blue navbar */
+      font-weight: 500;
+    }
+    .nav-link.active, .nav-link:hover {
+      color: #053366 !important;
+      background: #e4f2fb;
+      border-radius: 6px;
+    }
+    .tab-section {
+      display: none;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px #0001;
+      padding: 2rem 2.5rem;
+      margin-top: 2.5rem;
+      animation: fadeInDown 0.4s;
+      color: #1b355c;
+    }
+    .active-section {
+      display: block !important;
+    }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .form-inline, .form-group, .form-control {
+      background: #fff !important;
+      color: #222 !important;
+    }
+    .form-control::placeholder {
+      color: #76777a;
+      font-style: italic;
+      font-size: 1em;
+    }
+    th, td {
+      color: #1b355c !important;
+      font-size: 1em;
+      border-color: #e1eaf1 !important;
+    }
+    thead {
+      background: #e4f2fb;
+      color: #053366 !important;
+      font-weight: bold;
+    }
+    tbody tr:nth-child(odd) {
+      background: #f5fbff;
+    }
+    .btn-success, .btn-warning, .btn-danger, .btn-outline-danger {
+      font-weight: 600;
+      border-radius: 5px;
+    }
+    .btn-success { background: #0483c6; border: none; }
+    .btn-success:hover { background: #0369a3; }
+    .btn-warning { background: #ffc107; color: #222; border: none; }
+    .btn-warning:hover { background: #ffb300; }
+    .btn-danger { background: #e53935; border: none; }
+    .btn-danger:hover { background: #ba1b1b; }
+    .btn-outline-danger { border-color: #ba1b1b; color: #ba1b1b; }
+    .btn-outline-danger:hover { background: #ba1b1b; color: #fff; }
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-    <a class="navbar-brand" href="#"><i class="fas fa-leaf"></i> FarmPortal</a>
+    <a class="navbar-brand" href="#">
+      <img src="farm.jpg" alt="Farm Logo" style="height:48px;vertical-align:middle;margin-right:10px;">
+      FarmPortal
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,7 +109,7 @@
       <button id="logout-btn" class="btn btn-outline-danger my-2 my-sm-0"><i class="fa fa-sign-out-alt"></i> Logout</button>
     </div>
   </nav>
-
+  
   <!-- Dashboard -->
   <div class="container tab-section" id="dashboard">
     <h2></h2>
@@ -229,38 +302,38 @@
     }
     showSection('dashboard');
 
+    // Navigation click handlers
     document.getElementById('navDashboard').onclick = e => { e.preventDefault(); showSection('dashboard'); };
     document.getElementById('navLivestock').onclick = e => { e.preventDefault(); showSection('livestock-section'); };
     document.getElementById('navMRL').onclick = e => { e.preventDefault(); showSection('mrl-section'); };
     document.getElementById('navAMU').onclick = e => { e.preventDefault(); showSection('amu-section'); };
 
+    // Logout
     document.getElementById('logout-btn').onclick = () => {
       localStorage.removeItem('token');
-      window.location.href = 'index.html';
+      window.location.href = 'login.html';
     };
 
-    // In-memory data arrays
+    // Data arrays in memory (replace with API calls for persistence)
     let livestockData = [];
     let mrlData = [];
     let amuData = [];
 
-    // Render functions for tables
+    // Render tables
     function renderLivestock(data) {
       const tbody = document.querySelector('#livestock-table tbody');
       tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.species}</td><td>${row.breed}</td></tr>`).join('');
     }
-
     function renderMRL(data) {
       const tbody = document.querySelector('#mrl-table tbody');
       tbody.innerHTML = data.map(row => `<tr><td>${row.chemical}</td><td>${row.species}</td><td>${row.maxResidue}</td></tr>`).join('');
     }
-
     function renderAMU(data) {
       const tbody = document.querySelector('#amu-table tbody');
       tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.chemical}</td><td>${row.date}</td><td>${row.dosage}</td></tr>`).join('');
     }
 
-    // Filter function
+    // Filter functionality
     function filterData(data, searchTerm, keys) {
       searchTerm = searchTerm.toLowerCase();
       return data.filter(item => keys.some(key => item[key].toLowerCase().includes(searchTerm)));
@@ -274,7 +347,6 @@
       e.target.reset();
       renderLivestock(livestockData);
     };
-
     // Livestock search
     document.getElementById('livestock-search').addEventListener('input', e => {
       const filtered = filterData(livestockData, e.target.value, ['species', 'breed', 'tagNo']);
@@ -289,7 +361,6 @@
       e.target.reset();
       renderMRL(mrlData);
     };
-
     // MRL search
     document.getElementById('mrl-search').addEventListener('input', e => {
       const filtered = filterData(mrlData, e.target.value, ['chemical', 'species']);
@@ -304,14 +375,13 @@
       e.target.reset();
       renderAMU(amuData);
     };
-
     // AMU search
     document.getElementById('amu-search').addEventListener('input', e => {
       const filtered = filterData(amuData, e.target.value, ['tagNo', 'chemical', 'date', 'dosage']);
       renderAMU(filtered);
     });
 
-    // Initial render
+    // Initial table rendering
     renderLivestock(livestockData);
     renderMRL(mrlData);
     renderAMU(amuData);

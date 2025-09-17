@@ -2,76 +2,179 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Register - FarmPortal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background: #07589f; /* FarmTree blue */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+    }
+    .register-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+      max-width: 900px;
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      max-width: 90vw;
+    }
+    .left-side {
+      flex: 1;
+      background: #f3fbff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 30px;
+    }
+    .left-side img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 0 16px #a9d0ff;
+      object-fit: contain;
+    }
+    .right-side {
+      flex: 1;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .register-title {
+      color: #0166c1;
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .btn-register {
+      background: #0166c1;
+      border: none;
+      color: white;
+      font-weight: 600;
+      width: 100%;
+      padding: 11px;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.25s;
+      margin-top: 12px;
+    }
+    .btn-register:hover {
+      background: #004080;
+    }
+    input.form-control, select.form-control {
+      margin-bottom: 1.2rem;
+      border-radius: 6px;
+      border: 1px solid #b3d9f9;
+      padding: 10px 14px;
+      color: #194989;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    input::placeholder {
+      color: #194989;
+      font-style: italic;
+      opacity: 0.8;
+    }
+    .login-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #0166c1;
+      cursor: pointer;
+    }
+    .login-link a {
+      color: #0166c1;
+      text-decoration: underline;
+    }
+    @media (max-width: 780px) {
+      .register-container {
+        flex-direction: column;
+        max-width: 400px;
+      }
+      .left-side {
+        padding: 20px 15px;
+      }
+      .left-side img {
+        max-width: 260px;
+        margin-bottom: 20px;
+      }
+      .right-side {
+        padding: 20px 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container" style="max-width:400px; margin-top:60px;">
-    <h3 id="register-title" class="text-center mb-4"></h3>
-    <form id="register-form">
-      <div class="form-group">
-        <input type="text" id="username" class="form-control" required/>
-      </div>
-      <div class="form-group">
-        <input type="password" id="password" class="form-control" required/>
-      </div>
-      <div class="form-group">
-        <select id="role" class="form-control">
-          <option value="farmer">Farmer</option>
-          <option value="admin">Admin</option>
+  <div class="register-container">
+    <div class="left-side">
+      <img src="farmhouse.png" alt="Farmhouse Image"/>
+    </div>
+    <div class="right-side">
+      <h2 id="register-title" class="register-title"></h2>
+      <form id="register-form">
+        <input type="text" id="username" class="form-control" placeholder="" required/>
+        <input type="password" id="password" class="form-control" placeholder="" required/>
+        <select id="role" class="form-control" required>
+          <option value="farmer"></option>
+          <option value="admin"></option>
         </select>
+        <button type="submit" class="btn-register" id="register-btn"></button>
+      </form>
+      <div class="login-link">
+        Not a new user? <a href="login.html">Login</a>
       </div>
-      <button type="submit" class="btn btn-success btn-block"></button>
-      <p id="register-message" class="mt-3"></p>
-    </form>
-    <div class="text-center mt-2"><a href="index.html" id="back-login"></a></div>
+    </div>
   </div>
   <script>
-    // Simple language dictionary including role translations
     const lang = localStorage.getItem('language') || 'en';
     const dict = {
       en: {
         registerTitle: 'Register Your Account',
-        username: 'Username',
-        password: 'Password',
+        usernamePlaceholder: 'Username',
+        passwordPlaceholder: 'Password',
+        farmerRole: 'Farmer',
+        adminRole: 'Admin',
         registerBtn: 'Register',
-        backLogin: 'Already Registered? Login',
-        roles: {
-          farmer: 'Farmer',
-          admin: 'Admin'
-        }
+        loginText: 'Not a new user? ',
+        loginLink: 'Login'
       },
       ta: {
         registerTitle: '[உங்கள் கணக்கை பதிவு செய்யவும்]',
-        username: '[பயனர் பெயர்]',
-        password: '[கடவுச்சொல்]',
+        usernamePlaceholder: '[பயனர் பெயர்]',
+        passwordPlaceholder: '[கடவுச்சொல்]',
+        farmerRole: '[உழவர்]',
+        adminRole: '[நிர்வாகி]',
         registerBtn: '[பதிவு செய்யவும்]',
-        backLogin: '[ஏற்கனவே பதிவு செய்தீர்களா? உள்நுழைக]',
-        roles: {
-          farmer: '[உழவர்]',
-          admin: '[நிர்வாகி]'
-        }
+        loginText: '[புதிய பயனர் அல்லா? ]',
+        loginLink: '[உள்நுழைய]'
       }
     };
-
-    // Update static labels and placeholders
-    document.getElementById('register-title').textContent = dict[lang].registerTitle;
-    document.getElementById('username').placeholder = dict[lang].username;
-    document.getElementById('password').placeholder = dict[lang].password;
-    document.querySelector('#register-form button').textContent = dict[lang].registerBtn;
-    document.getElementById('back-login').textContent = dict[lang].backLogin;
-
-    // Update role dropdown option texts
-    const roleSelect = document.getElementById('role');
-    roleSelect.options[0].text = dict[lang].roles.farmer;
-    roleSelect.options[1].text = dict[lang].roles.admin;
-
-    // Registration logic placeholder
-    document.getElementById('register-form').onsubmit = async function(e) {
+    function setLanguageUI(lang) {
+      const d = dict[lang];
+      document.getElementById('register-title').textContent = d.registerTitle;
+      document.getElementById('username').placeholder = d.usernamePlaceholder;
+      document.getElementById('password').placeholder = d.passwordPlaceholder;
+      const roleSelect = document.getElementById('role');
+      roleSelect.options[0].text = d.farmerRole;
+      roleSelect.options[1].text = d.adminRole;
+      document.getElementById('register-btn').textContent = d.registerBtn;
+      const loginDiv = document.querySelector('.login-link');
+      loginDiv.innerHTML = d.loginText + `<a href="login.html">${d.loginLink}</a>`;
+    }
+    setLanguageUI(lang);
+    document.getElementById('register-form').onsubmit = function(e) {
       e.preventDefault();
-      // Implement fetch API call to backend registration here
-      // Show success or error message in #register-message
-      // On success, redirect to login.html
+      alert('Registration submitted!');
     };
   </script>
 </body>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FarmPortal Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #0166c1;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .login-row {
+      max-width: 900px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+      overflow: hidden;
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+      height: 480px;
+    }
+    .left-side {
+      background: #f3fbff;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px;
+      min-height: 440px;
+    }
+    .big-logo {
+      max-width: 340px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      border-radius: 18px;
+      box-shadow: 0 0 18px #cbe2ff;
+    }
+    @media (max-width: 900px) {
+      .login-row {
+        flex-direction: column;
+        height: auto;
+      }
+      .left-side, .right-side {
+        min-height: 220px;
+        padding: 24px 14px;
+      }
+      .big-logo {
+        max-width: 220px;
+        margin-bottom: 20px;
+      }
+    }
+    .right-side {
+      flex: 1;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .side-logo {
+      height: 80px;
+      width: auto;
+      display: block;
+      margin: 0 auto 18px auto;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 0 8px #dde;
+      object-fit: contain;
+    }
+    .login-title {
+      color: #0166c1;
+      font-weight: bold;
+      margin-bottom: 18px;
+      font-size: 1.6rem;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    .form-control:focus {
+      border-color: #0166c1;
+      box-shadow: 0 0 0 0.2rem rgba(1, 102, 193, 0.25);
+    }
+    .btn-login {
+      background: #0166c1;
+      color: #fff;
+      font-weight: bold;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      border: none;
+    }
+    .btn-login:hover {
+      background: #004080;
+    }
+    #lang-toggle {
+      margin-bottom: 15px;
+      cursor: pointer;
+      border: 2px solid #0166c1;
+      background: #f3fbff;
+      color: #0166c1;
+      font-weight: 600;
+      width: 72px;
+      align-self: flex-end;
+    }
+    #lang-toggle:hover {
+      background: #0166c1;
+      color: #fff;
+      border-color: #004080;
+    }
+    #login-error {
+      min-height: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-row">
+    <!-- Large farmhouse image at left -->
+    <div class="left-side">
+      <img src="farmhouse.png" alt="Farmhouse Logo" class="big-logo"/>
+    </div>
+    <!-- Login panel, with farm logo at top -->
+    <div class="right-side">
+      <img src="farm.jpg" alt="Farm Logo" class="side-logo">
+      <button id="lang-toggle" type="button"></button>
+      <div class="login-title" id="login-title"><i class="fas fa-user-circle"></i></div>
+      <form id="login-form" style="width:100%;max-width:340px;">
+        <div class="form-group">
+          <input type="text" id="username" class="form-control" placeholder="" required />
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" class="form-control" placeholder="" required />
+        </div>
+        <button type="submit" class="btn btn-login btn-block" id="login-btn"></button>
+        <p id="login-error" class="text-danger mt-3 text-center"></p>
+        <div class="d-flex justify-content-between">
+          <a href="#" style="color:#0166c1;">Forgot Password?</a>
+          <a href="#" style="color:#0166c1;">Contact Us</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+  <script>
+    // Language dictionaries for English and Tamil
+    const translations = {
+      en: {
+        loginTitle: 'Login to FarmPortal',
+        usernamePlaceholder: 'Username',
+        passwordPlaceholder: 'Password',
+        loginButton: 'Login',
+        loginErrorDefault: 'Login failed'
+      },
+      ta: {
+        loginTitle: '[FarmPortalல் உள்நுழைக]',
+        usernamePlaceholder: '[பயனர் பெயர்]',
+        passwordPlaceholder: '[கடவுச்சொல்]',
+        loginButton: '[உள்நுழை]',
+       
+        loginErrorDefault: '[உள்நுழைவு தோல்வி]'
+      }
+    };
+    let lang = localStorage.getItem('language') || 'en';
+    function setLanguage(lang) {
+      const t = translations[lang];
+      document.getElementById('login-title').textContent = t.loginTitle;
+      document.getElementById('username').placeholder = t.usernamePlaceholder;
+      document.getElementById('password').placeholder = t.passwordPlaceholder;
+      document.getElementById('login-btn').textContent = t.loginButton;
+    
+      localStorage.setItem('language', lang);
+    }
+   
+    ;
+    setLanguage(lang);
+    if(localStorage.getItem('token')) {
+      window.location.href = 'app.html';
+    }
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const text = await res.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          console.error('Non-JSON response:', text);
+          throw new Error('Server error: Response is not valid JSON');
+        }
+        if (!res.ok) {
+          throw new Error(data.message || translations[lang].loginErrorDefault);
+        }
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('username', data.username);
+        window.location.href = 'app.html';
+      } catch (error) {
+        document.getElementById('login-error').textContent = error.message;
+        console.error('Login error:', error);
+      }
+    });
+  </script>
+</body>
+</html>

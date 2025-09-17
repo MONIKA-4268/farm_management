@@ -5,21 +5,67 @@
   <title>Select Language - FarmPortal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
-    body { display: flex; justify-content: center; align-items: center; height: 100vh; }
-    .lang-card { background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;}
-    button { margin: 10px; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #001f4d; /* Dark blue background */
+      color: #fff;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .lang-card {
+      background: #fff; /* White card */
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 18px #003366;
+      text-align: center;
+      width: 310px;
+    }
+    button {
+      margin: 10px;
+      width: 100px;
+      border: 2px solid #001f4d;
+      background: #001f4d;
+      color: #fff;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    button:hover {
+      background: #fff;
+      color: #001f4d;
+      border-color: #001f4d;
+      cursor: pointer;
+    }
+    img.logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      height: 80px;
+      /* Uncomment below for blue monochrome effect if using PNG/JPG
+      filter: grayscale(100%) brightness(0.8) sepia(1) hue-rotate(200deg); 
+      */
+    }
+    h3 {
+      color: rgb(0, 31, 77);
+      margin-bottom: 25px;
+    }
   </style>
 </head>
 <body>
   <div class="lang-card">
+    <!-- Use your dark blue/white logo: PNG, JPG, SVG -->
+   <img src="farm.jpg" alt="Farmhouse Livestock" class="logo" style="height:130px;">
+
+
     <h3>Select Language</h3>
-    <button class="btn btn-primary" onclick="choose('en')">English</button>
-    <button class="btn btn-success" onclick="choose('ta')">தமிழ்</button>
+    <button class="btn" onclick="choose('en')">English</button>
+    <button class="btn" onclick="choose('ta')">தமிழ்</button>
   </div>
   <script>
     function choose(lang) {
       localStorage.setItem('language', lang);
-      window.location.href = 'register.html';
+      window.location.href = 'register.html'; // Update with your registration page path
     }
   </script>
 </body>
