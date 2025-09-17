@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Select Language - FarmPortal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .lang-card { background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;}
+    button { margin: 10px; }
+  </style>
+</head>
+<body>
+  <div class="lang-card">
+    <h3>Select Language</h3>
+    <button class="btn btn-primary" onclick="choose('en')">English</button>
+    <button class="btn btn-success" onclick="choose('ta')">தமிழ்</button>
+  </div>
+  <script>
+    function choose(lang) {
+      localStorage.setItem('language', lang);
+      window.location.href = 'register.html';
+    }
+  </script>
+</body>
+</html>

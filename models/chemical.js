@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
 
-const chemicalSchema = new mongoose.Schema({
-  name: String,
-  type: { type: String, enum: ['pesticide', 'veterinary_drug', 'other'] },
-  description: String,
-  createdAt: { type: Date, default: Date.now },
+// Example route to test
+router.get('/', (req, res) => {
+  res.json({ message: 'Chemical route works!' });
 });
 
-module.exports = mongoose.model('Chemical', chemicalSchema);
+module.exports = router;
