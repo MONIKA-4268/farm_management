@@ -8,15 +8,15 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <style>
     body {
-      background: #0483c6;
+      background: linear-gradient(135deg, #e6ffe6 0%, #b7e4c7 45%, #229954 100%); /* Nature-inspired green gradient */
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #222;
     }
     .navbar {
-      background: #0483c6 !important;
+      background: #229954 !important; /* Nature green */
     }
     .navbar-brand {
-      color: #1b355c !important;
+      color: #145a32 !important;
       font-weight: bold;
       font-size: 2rem;
       letter-spacing: 2px;
@@ -27,19 +27,19 @@
     }
     .nav-link.active,
     .nav-link:hover {
-      color: #053366 !important;
-      background: #e4f2fb;
+      color: #229954 !important;
+      background: #d6f5d6;
       border-radius: 6px;
     }
     .tab-section {
       display: none;
       background: #fff;
       border-radius: 14px;
-      box-shadow: 0 2px 16px #0001;
+      box-shadow: 0 2px 16px #22995433;
       padding: 2rem 2.5rem;
       margin-top: 2.5rem;
       animation: fadeInDown 0.4s;
-      color: #1b355c;
+      color: #145a32;
       min-height: 70vh;
       overflow-y: auto;
     }
@@ -59,30 +59,30 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      color: #1b355c;
+      color: #145a32;
     }
     thead {
-      background: #e4f2fb;
-      color: #053366;
+      background: #d6f5d6;
+      color: #229954;
       font-weight: bold;
     }
     tbody tr:nth-child(odd) {
       background: #f5fbff;
     }
     tbody tr:hover {
-      background: #dbeeff;
+      background: #e6ffe6;
     }
     th, td {
       padding: 12px 8px;
-      border: 1px solid #e1eaf1;
+      border: 1px solid #c6efce;
       text-align: center;
     }
     .form-inline, .form-group, .form-control {
       background: #fff !important;
-      color: #222 !important;
+      color: #145a32 !important;
     }
     .form-control::placeholder {
-      color: #76777a;
+      color: #229954;
       font-style: italic;
       font-size: 1em;
     }
@@ -91,83 +91,266 @@
       border-radius: 5px;
     }
     .btn-success {
-      background: #0483c6;
+      background: #229954;
       border: none;
       color: white;
     }
     .btn-success:hover {
-      background: #0369a3;
+      background: #145a32;
     }
     .btn-warning {
-      background: #ffc107;
+      background: #ffe066;
       border: none;
-      color: #222;
+      color: #145a32;
     }
     .btn-warning:hover {
-      background: #ffb300;
+      background: #ffd633;
     }
     .btn-danger {
-      background: #e53935;
+      background: #d35400;
       border: none;
       color: white;
     }
     .btn-danger:hover {
-      background: #ba1b1b;
+      background: #ba4a00;
     }
   </style>
 </head>
 <body>
-  </style>
-</head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-    <a class="navbar-brand" href="#">
-      <img src="farm.jpg" alt="Farm Logo" style="height:48px;vertical-align:middle;margin-right:10px;" />
-      FarmPortal
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="#" id="navDashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" id="navCow"><i class="fas fa-hippo"></i> Cow</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" id="navMedicineLog"><i class="fas fa-cogs"></i> Medicine Log</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" id="navLivestock"><i class="fas fa-cow"></i> Livestock</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" id="navMRL"><i class="fas fa-vial"></i> MRL</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" id="navAMU"><i class="fas fa-syringe"></i> AMU Logs</a></li>
-      </ul>
-      <button id="logout-btn" class="btn btn-outline-danger my-2 my-sm-0"><i class="fa fa-sign-out-alt"></i> <span id="logoutText"></span></button>
-    </div>
-  </nav>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <a class="navbar-brand" href="#">
+      <img src="farm.jpg" alt="Farm Logo" style="height:48px;vertical-align:middle;margin-right:10px;" />
+      FarmPortal
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="#" id="navDashboard"></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navCow"></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navMedRec"></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navMRL"></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navAMU"></a></li>
+      </ul>
+      <button id="logout-btn" class="btn btn-outline-danger my-2 my-sm-0"><i class="fa fa-sign-out-alt"></i> <span id="logoutText"></span></button>
+    </div>
+  </nav>
 
-  <!-- Dashboard -->
-  <div class="container tab-section active-section" id="dashboard">
-    <h2 id="dashboardTitle"></h2>
-    <p id="dashboardDesc"></p>
-  </div>
+  <!-- Dashboard -->
+  <div class="container tab-section active-section" id="dashboard">
+    <h2 id="dashboardTitle"></h2>
+    <p id="dashboardDesc"></p>
+  </div>
 
-<h2>Enter Cow ID to Get Details</h2>
-<label for="cowId">Cow ID:</label>
-<input type="text" id="cowId" placeholder="e.g., CID-001" />
-<button onclick="showCowData()">Show Details</button>
+  <!-- Cow Section -->
+  <div class="container tab-section" id="cow-section">
+    <h3 class="mt-3"><i class="fas fa-hippo"></i> <span id="cowTitle"></span></h3>
+    <div class="bg-white p-3 rounded shadow-sm mb-4">
+      <h4 id="cowPrompt"></h4>
+      <label for="cowId" id="cowIdLabel"></label>
+      <input type="text" id="cowId" placeholder="e.g., C001" />
+      <button type="button" onclick="showCowData()" id="cowShowBtn"></button>
+      <div id="result"></div>
+    </div>
+  </div>
 
-<div id="result"></div>
+  <!-- Medicine Recommendation Section -->
+  <div class="container tab-section" id="medrec-section">
+    <h3 class="mt-3"><i class="fas fa-capsules"></i> <span id="medRecTitle"></span></h3>
+    <form id="recommend-form" class="mb-3">
+      <div class="row">
+        <div class="col">
+          <input class="form-control mb-2" id="recBreed" placeholder="" required>
+        </div>
+        <div class="col">
+          <input class="form-control mb-2" id="recAge" type="number" placeholder="" required>
+        </div>
+        <div class="col">
+          <input class="form-control mb-2" id="recDisease" placeholder="" required>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-info" id="recommendBtn"></button>
+        </div>
+      </div>
+    </form>
+    <div id="recommendResult" class="mb-3"></div>
+  </div>
+
+  <!-- MRL Section -->
+  <div class="container tab-section" id="mrl-section">
+    <h3 class="mt-3"><i class="fas fa-vial"></i> <span id="manageMRL"></span></h3>
+    <form id="mrl-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
+      <input type="text" class="form-control mr-2 mb-2" name="chemical" required placeholder="" />
+      <input type="text" class="form-control mr-2 mb-2" name="species" required placeholder="" />
+      <input type="number" class="form-control mr-2 mb-2" name="maxResidue" step="0.01" required placeholder="" />
+      <button type="submit" class="btn btn-warning text-white mb-2"><i class="fas fa-plus"></i> <span id="addMRLBtn"></span></button>
+    </form>
+    <input type="text" id="mrl-search" class="form-control mb-3" placeholder="" />
+    <div class="table-responsive bg-white p-2 rounded shadow-sm">
+      <table class="table table-bordered text-center" id="mrl-table">
+        <thead><tr><th id="chemTh"></th><th id="speciesTh"></th><th id="maxResTh"></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AMU Section -->
+  <div class="container tab-section" id="amu-section">
+    <h3 class="mt-3"><i class="fas fa-syringe"></i> <span id="logAMU"></span></h3>
+    <form id="amu-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
+      <input type="text" class="form-control mr-2 mb-2" name="tagNo" required placeholder="" />
+      <input type="text" class="form-control mr-2 mb-2" name="chemical" required placeholder="" />
+      <input type="date" class="form-control mr-2 mb-2" name="date" required />
+      <input type="text" class="form-control mr-2 mb-2" name="dosage" required placeholder="" />
+      <button type="submit" class="btn btn-danger mb-2"><i class="fas fa-plus"></i> <span id="logAMUBtn"></span></button>
+    </form>
+    <input type="text" id="amu-search" class="form-control mb-3" placeholder="" />
+    <div class="table-responsive bg-white p-2 rounded shadow-sm">
+      <table class="table table-bordered text-center" id="amu-table">
+        <thead><tr><th id="tagTh"></th><th id="chemAMUTh"></th><th id="dateTh"></th><th id="dosageTh"></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
 
 <script>
-  // Cow data object indexed by Cow ID
-  const cows = {
-    "CID-001": {"Breed": "Holstein-Friesian", "Age": 4.4, "Sex": "F", "Weight": 680, "Vaccination": "Up-to-date", "MilkYield": 31},
-    "CID-002": {"Breed": "Holstein-Friesian", "Age": 5.0, "Sex": "F", "Weight": 710, "Vaccination": "FMD (2025-03-10)", "MilkYield": 29},
-    "CID-003": {"Breed": "Jersey", "Age": 2.6, "Sex": "F", "Weight": 440, "Vaccination": "Up-to-date", "MilkYield": 21},
-    "CID-004": {"Breed": "Angus", "Age": 2.8, "Sex": "M", "Weight": 850, "Vaccination": "Up-to-date", "MilkYield": 0},
-    "CID-005": {"Breed": "Jersey", "Age": 6.1, "Sex": "F", "Weight": 465, "Vaccination": "BQ Vaccine (2025-05-01)", "MilkYield": 0},
-    "CID-006": {"Breed": "Hereford", "Age": 1.5, "Sex": "F", "Weight": 520, "Vaccination": "Up-to-date", "MilkYield": 0},
-    "CID-007": {"Breed": "Gir", "Age": 4.0, "Sex": "F", "Weight": 490, "Vaccination": "Anthrax (2025-04-15)", "MilkYield": 13},
-    "CID-008": {"Breed": "Angus", "Age": 3.3, "Sex": "M", "Weight": 910, "Vaccination": "Up-to-date", "MilkYield": 0},
-    "CID-009": {"Breed": "Holstein-Friesian", "Age": 2.2, "Sex": "F", "Weight": 590, "Vaccination": "Up-to-date", "MilkYield": 25},
-    "CID-010": {"Breed": "Jersey", "Age": 5.6, "Sex": "F", "Weight": 455, "Vaccination": "FMD Booster (2025-03-12)", "MilkYield": 20},
+  // Bilingual dictionary (kept as is)
+  const dict = {
+    en: {
+      dashboard: 'Dashboard',
+      dashboardWelcome: 'Welcome to FarmPortal Dashboard',
+      dashboardDesc: 'Use navigation above to manage Cows, Medicine Recommendations, MRL, and AMU logs.',
+      cow: 'Cow',
+      cowPrompt: 'Enter Cow ID to Get Details',
+      cowIdLabel: 'Cow ID:',
+      cowShowBtn: 'Show Details',
+      medRec: 'Medicine Recommendation',
+      medRecBreed: 'Breed',
+      medRecAge: 'Age (Months)',
+      medRecDisease: 'Health Issue',
+      medRecBtn: 'Recommend Medicine',
+      mrl: 'MRL',
+      manageMRL: 'Manage Maximum Residue Limits (MRL)',
+      chemicalPlaceholder: 'Chemical',
+      speciesPlaceholder: 'Species',
+      maxResiduePlaceholder: 'Max Residue (mg/kg)',
+      addMRLBtn: 'Add MRL',
+      searchMRLPlaceholder: 'Search MRL...',
+      chemTh: 'Chemical',
+      speciesTh: 'Species',
+      maxResTh: 'Max Residue',
+      amuLogs: 'AMU Logs',
+      logAMU: 'Log Antimicrobial Usage (AMU)',
+      amuTagNoPlaceholder: 'Livestock Tag No.',
+      amuChemicalPlaceholder: 'Chemical',
+      amuDatePlaceholder: 'Date',
+      amuDosagePlaceholder: 'Dosage',
+      logAMUBtn: 'Log AMU',
+      searchAMUPlaceholder: 'Search AMU Logs...',
+      tagTh: 'Tag No.',
+      chemAMUTh: 'Chemical',
+      dateTh: 'Date',
+      dosageTh: 'Dosage',
+      logout: 'Logout'
+    },
+    ta: {
+      dashboard: 'டாஷ்போர்டு',
+      dashboardWelcome: 'FarmPortal தளத்திற்கு வரவேற்கின்றோம்',
+      dashboardDesc: 'மேலே உள்ள வழிசெலுத்தலைப் பயன்படுத்தி காளைகள், மருந்து பரிந்துரை, MRL மற்றும் AMU பதிவுகளை நிர்வகிக்கவும்.',
+      cow: 'காள்',
+      cowPrompt: 'காள் ஐடி உள்ளிடவும்',
+      cowIdLabel: 'காள் ஐடி:',
+      cowShowBtn: 'விவரங்கள்',
+      medRec: 'மருந்து பரிந்துரை',
+      medRecBreed: 'இனம்',
+      medRecAge: 'வயது (மாதங்கள்)',
+      medRecDisease: 'நோய்/பிரச்சனை',
+      medRecBtn: 'மருந்தை பரிந்துரைக்கவும்',
+      mrl: 'MRL',
+      manageMRL: 'அதிகபட்ச இருப்பு அளவு (MRL) நிர்வகி',
+      chemicalPlaceholder: 'ரசாயனம்',
+      speciesPlaceholder: 'வகை',
+      maxResiduePlaceholder: 'அதிகபட்ச இருப்பு (மி.கி/கி)',
+      addMRLBtn: 'MRL சேர்க்க',
+      searchMRLPlaceholder: 'MRL தேடு...',
+      chemTh: 'ரசாயனம்',
+      speciesTh: 'வகை',
+      maxResTh: 'அதிகபட்ச இருப்பு',
+      amuLogs: 'AMU பதிவுகள்',
+      logAMU: 'மருந்து பயன்பாடு பதிவு',
+      amuTagNoPlaceholder: 'மிருகபாலை தொகுதி எண்',
+      amuChemicalPlaceholder: 'ரசாயனம்',
+      amuDatePlaceholder: 'தேதி',
+      amuDosagePlaceholder: 'அளவு',
+      logAMUBtn: 'AMU பதிவு செய்',
+      searchAMUPlaceholder: 'AMU பதிவுகளைத் தேடு...',
+      tagTh: 'தொகுதி எண்',
+      chemAMUTh: 'ரசாயனம்',
+      dateTh: 'தேதி',
+      dosageTh: 'அளவு',
+      logout: 'வெளியேறு'
+    }
+  };
+
+  // Language state
+  let language = localStorage.getItem('language') || 'en';
+
+  // Set all texts according to language
+  function setTexts(lang) {
+    document.getElementById('navDashboard').innerHTML = `<i class="fas fa-tachometer-alt"></i> ${dict[lang].dashboard}`;
+    document.getElementById('navCow').innerHTML = `<i class="fas fa-hippo"></i> ${dict[lang].cow}`;
+    document.getElementById('navMedRec').innerHTML = `<i class="fas fa-capsules"></i> ${dict[lang].medRec}`;
+    document.getElementById('navMRL').innerHTML = `<i class="fas fa-vial"></i> ${dict[lang].mrl}`;
+    document.getElementById('navAMU').innerHTML = `<i class="fas fa-syringe"></i> ${dict[lang].amuLogs}`;
+    document.getElementById('logoutText').textContent = dict[lang].logout;
+    document.getElementById('dashboardTitle').textContent = dict[lang].dashboardWelcome;
+    document.getElementById('dashboardDesc').textContent = dict[lang].dashboardDesc;
+    document.getElementById('cowTitle').textContent = dict[lang].cow;
+    document.getElementById('cowPrompt').textContent = dict[lang].cowPrompt;
+    document.getElementById('cowIdLabel').textContent = dict[lang].cowIdLabel;
+    document.getElementById('cowShowBtn').textContent = dict[lang].cowShowBtn;
+    document.getElementById('medRecTitle').textContent = dict[lang].medRec;
+    document.getElementById('recBreed').placeholder = dict[lang].medRecBreed;
+    document.getElementById('recAge').placeholder = dict[lang].medRecAge;
+    document.getElementById('recDisease').placeholder = dict[lang].medRecDisease;
+    document.getElementById('recommendBtn').textContent = dict[lang].medRecBtn;
+    document.getElementById('manageMRL').textContent = dict[lang].manageMRL;
+    document.getElementById('mrl-form').chemical.placeholder = dict[lang].chemicalPlaceholder;
+    document.getElementById('mrl-form').species.placeholder = dict[lang].speciesPlaceholder;
+    document.getElementById('mrl-form').maxResidue.placeholder = dict[lang].maxResiduePlaceholder;
+    document.getElementById('addMRLBtn').textContent = dict[lang].addMRLBtn;
+    document.getElementById('mrl-search').placeholder = dict[lang].searchMRLPlaceholder;
+    document.getElementById('chemTh').textContent = dict[lang].chemTh;
+    document.getElementById('speciesTh').textContent = dict[lang].speciesTh;
+    document.getElementById('maxResTh').textContent = dict[lang].maxResTh;
+    document.getElementById('logAMU').textContent = dict[lang].logAMU;
+    document.getElementById('amu-form').tagNo.placeholder = dict[lang].amuTagNoPlaceholder;
+    document.getElementById('amu-form').chemical.placeholder = dict[lang].amuChemicalPlaceholder;
+    document.getElementById('amu-form').date.placeholder = dict[lang].amuDatePlaceholder;
+    document.getElementById('amu-form').dosage.placeholder = dict[lang].amuDosagePlaceholder;
+    document.getElementById('logAMUBtn').textContent = dict[lang].logAMUBtn;
+    document.getElementById('amu-search').placeholder = dict[lang].searchAMUPlaceholder;
+    document.getElementById('tagTh').textContent = dict[lang].tagTh;
+    document.getElementById('chemAMUTh').textContent = dict[lang].chemAMUTh;
+    document.getElementById('dateTh').textContent = dict[lang].dateTh;
+    document.getElementById('dosageTh').textContent = dict[lang].dosageTh;
+  }
+
+   // --- Data for cows and medicine recommendations ---
+  // English and Tamil versions for cows data
+  const cows_en = {
+    "C001": {"Breed": "Holstein-Friesian", "Age": 4.4, "Sex": "F", "Weight": 680, "Vaccination": "Up-to-date", "MilkYield": 31},
+    "C002": {"Breed": "Holstein-Friesian", "Age": 5.0, "Sex": "F", "Weight": 710, "Vaccination": "FMD (2025-03-10)", "MilkYield": 29},
+    "C003": {"Breed": "Jersey", "Age": 2.6, "Sex": "F", "Weight": 440, "Vaccination": "Up-to-date", "MilkYield": 21},
+    "C004": {"Breed": "Angus", "Age": 2.8, "Sex": "M", "Weight": 850, "Vaccination": "Up-to-date", "MilkYield": 0},
+    "C005": {"Breed": "Jersey", "Age": 6.1, "Sex": "F", "Weight": 465, "Vaccination": "BQ Vaccine (2025-05-01)", "MilkYield": 0},
+    "C006": {"Breed": "Hereford", "Age": 1.5, "Sex": "F", "Weight": 520, "Vaccination": "Up-to-date", "MilkYield": 0},
+    "C007": {"Breed": "Gir", "Age": 4.0, "Sex": "F", "Weight": 490, "Vaccination": "Anthrax (2025-04-15)", "MilkYield": 13},
+    "C008": {"Breed": "Angus", "Age": 3.3, "Sex": "M", "Weight": 910, "Vaccination": "Up-to-date", "MilkYield": 0},
+    "C009": {"Breed": "Holstein-Friesian", "Age": 2.2, "Sex": "F", "Weight": 590, "Vaccination": "Up-to-date", "MilkYield": 25},
+    "C010": {"Breed": "Jersey", "Age": 5.6, "Sex": "F", "Weight": 455, "Vaccination": "FMD Booster (2025-03-12)", "MilkYield": 20},
     "C011": {"Breed": "Holstein", "Age": 4.5, "Sex": "F", "Weight": 460, "Vaccination": "FMD Booster (2025-03-15)", "MilkYield": 28},
     "C012": {"Breed": "Jersey", "Age": 5.1, "Sex": "F", "Weight": 405, "Vaccination": "Up-to-date", "MilkYield": 20},
     "C013": {"Breed": "Sahiwal", "Age": 6.0, "Sex": "F", "Weight": 510, "Vaccination": "Up-to-date", "MilkYield": 14},
@@ -180,11 +363,132 @@
     "C020": {"Breed": "Jersey", "Age": 3.8, "Sex": "F", "Weight": 435, "Vaccination": "Up-to-date", "MilkYield": 19}
   };
 
+  const cows_ta = {
+    "C001": {"Breed": "ஹோல்ஸ்டீன்-பிரிசியன்", "Age": 4.4, "Sex": "பெண்", "Weight": 680, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 31},
+    "C002": {"Breed": "ஹோல்ஸ்டீன்-பிரிசியன்", "Age": 5.0, "Sex": "பெண்", "Weight": 710, "Vaccination": "FMD (2025-03-10)", "MilkYield": 29},
+    "C003": {"Breed": "ஜெர்சி", "Age": 2.6, "Sex": "பெண்", "Weight": 440, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 21},
+    "C004": {"Breed": "ஆங்கஸ்", "Age": 2.8, "Sex": "ஆண்", "Weight": 850, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 0},
+    "C005": {"Breed": "ஜெர்சி", "Age": 6.1, "Sex": "பெண்", "Weight": 465, "Vaccination": "BQ தடுப்பூசி (2025-05-01)", "MilkYield": 0},
+    "C006": {"Breed": "ஹெர்ஃபோர்ட்", "Age": 1.5, "Sex": "பெண்", "Weight": 520, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 0},
+    "C007": {"Breed": "கிர்", "Age": 4.0, "Sex": "பெண்", "Weight": 490, "Vaccination": "ஆன்திராக்ஸ் (2025-04-15)", "MilkYield": 13},
+    "C008": {"Breed": "ஆங்கஸ்", "Age": 3.3, "Sex": "ஆண்", "Weight": 910, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 0},
+    "C009": {"Breed": "ஹோல்ஸ்டீன்-பிரிசியன்", "Age": 2.2, "Sex": "பெண்", "Weight": 590, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 25},
+    "C010": {"Breed": "ஜெர்சி", "Age": 5.6, "Sex": "பெண்", "Weight": 455, "Vaccination": "FMD பூஸ்டர் (2025-03-12)", "MilkYield": 20},
+    "C011": {"Breed": "ஹோல்ஸ்டீன்", "Age": 4.5, "Sex": "பெண்", "Weight": 460, "Vaccination": "FMD பூஸ்டர் (2025-03-15)", "MilkYield": 28},
+    "C012": {"Breed": "ஜெர்சி", "Age": 5.1, "Sex": "பெண்", "Weight": 405, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 20},
+    "C013": {"Breed": "சாஹிவால்", "Age": 6.0, "Sex": "பெண்", "Weight": 510, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 14},
+    "C014": {"Breed": "கிர்", "Age": 4.8, "Sex": "பெண்", "Weight": 475, "Vaccination": "ஆன்திராக்ஸ் (2025-04-02)", "MilkYield": 12},
+    "C015": {"Breed": "ஹோல்ஸ்டீன்", "Age": 3.9, "Sex": "பெண்", "Weight": 490, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 30},
+    "C016": {"Breed": "ஜெர்சி", "Age": 5.5, "Sex": "பெண்", "Weight": 415, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 22},
+    "C017": {"Breed": "சாஹிவால்", "Age": 6.2, "Sex": "பெண்", "Weight": 525, "Vaccination": "FMD (2025-03-20)", "MilkYield": 15},
+    "C018": {"Breed": "கிர்", "Age": 5.7, "Sex": "பெண்", "Weight": 455, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 11},
+    "C019": {"Breed": "ஹோல்ஸ்டீன்", "Age": 4.2, "Sex": "பெண்", "Weight": 470, "Vaccination": "BQ தடுப்பூசி (2025-05-11)", "MilkYield": 29},
+    "C020": {"Breed": "ஜெர்சி", "Age": 3.8, "Sex": "பெண்", "Weight": 435, "Vaccination": "கால்நடை தடுப்பூசி முழுமை", "MilkYield": 19}
+  };
+
+  // English medicine recommendations
+  const medicineRecommendations_en = [
+    {healthIssue:"Calf Scours",drugName:"Sulfamethazine",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Twice daily for 4 days",withdrawal:"96 hours (4 days)"},
+    {healthIssue:"Respiratory Disease",drugName:"Enrofloxacin",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Once daily for 3 days",withdrawal:"96 hours (4 days)"},
+    {healthIssue:"Mastitis",drugName:"Amoxicillin",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Once daily for 5 days",withdrawal:"60 hours (2.5 days)"},
+    {healthIssue:"Lameness",drugName:"Ketoprofen",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Single dose",withdrawal:"24 hours (1 day)"},
+    {healthIssue:"Milk Fever",drugName:"Calcium Gluconate",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Single dose IV",withdrawal:"0 hours"},
+    {healthIssue:"Bloat",drugName:"Poloxalene",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Single dose, repeat if needed",withdrawal:"0 hours"},
+    {healthIssue:"Parasites (Internal)",drugName:"Albendazole",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Single oral dose",withdrawal:"120 hours (5 days)"},
+    {healthIssue:"Parasites (External)",drugName:"Ivermectin",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Single injection (SC)",withdrawal:"Consult Vet (Varies)"},
+    {healthIssue:"Black Quarter (BQ)",drugName:"Penicillin G",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"High dose, daily for 5-7 days",withdrawal:"72 hours (3 days)"},
+    {healthIssue:"Ringworm (Fungus)",drugName:"Griseofulvin",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Oral, daily for 7 days",withdrawal:"Consult Vet (Varies)"},
+    {healthIssue:"Foot & Mouth (FMD)",drugName:"Flunixin Meglumine",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Supportive care for fever/pain",withdrawal:"36 hours (1.5 days)"},
+    {healthIssue:"Theileriosis",drugName:"Buparvaquone",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Two doses, 48-72 hrs apart",withdrawal:"48 hours (2 days)"},
+    {healthIssue:"Anaplasmosis",drugName:"Oxytetracycline",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"Daily for 3-5 days",withdrawal:"96 hours (4 days)"},
+    {healthIssue:"Anthrax",drugName:"Penicillin G",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"High dose IV, aggressive Tx",withdrawal:"72 hours (3 days)"}
+  ];
+
+  // Tamil medicine recommendations
+  const medicineRecommendations_ta = [
+    {healthIssue:"கால்ப் ஸ்கார்ஸ்",drugName:"சல்பாமெத்தைசின்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"நாளைக்கு இருமுறை 4 நாட்கள்",withdrawal:"96 மணி நேரம் (4 நாட்கள்)"},
+    {healthIssue:"சுவாச நோய்",drugName:"என்ரோஃபுளாக்சாசின்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"நாளைக்கு ஒருமுறை 3 நாட்கள்",withdrawal:"96 மணி நேரம் (4 நாட்கள்)"},
+    {healthIssue:"மாஸ்டிடிஸ்",drugName:"அமொக்சிசிலின்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"நாளைக்கு ஒருமுறை 5 நாட்கள்",withdrawal:"60 மணி நேரம் (2.5 நாட்கள்)"},
+    {healthIssue:"நடுத்தெரியும் வலி",drugName:"கீடோப்ரோஃபென்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"ஒன்றே ஒரு மருந்து அளவு",withdrawal:"24 மணி நேரம் (1 நாள்)"},
+    {healthIssue:"பால் காய்ச்சல்",drugName:"கல்சியம் கிளூகோனேட்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"ஒன்றே ஒரு மருந்து இன்ஜெக்சன்",withdrawal:"0 மணி நேரம்"},
+    {healthIssue:"வெப்பம்",drugName:"பொலக்ஸலீன்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"ஒன்றே ஒரு மருந்து அளவு, தேவையானால் மீண்டும் கொடுக்கவும்",withdrawal:"0 மணி நேரம்"},
+    {healthIssue:"உள் புழுக்கள்",drugName:"அல்பென்டசோல்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"ஒன்றே ஒரு வாய்வழி மருந்து அளவு",withdrawal:"120 மணி நேரம் (5 நாட்கள்)"},
+    {healthIssue:"வெளி புழுக்கள்",drugName:"இவர்மெக்டின்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"ஒன்றே ஒரு இன்ஜெக்ஷன் (உட்பகுதி)",withdrawal:"வெட்டனரி மருத்துவரை அணுகவும் (மாறுபாடு)"},
+    {healthIssue:"பிளாக் குவார்டர் (BQ)",drugName:"பெனிசிலின் ஜி",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"உயர் மட்டம், நாளுக்கு 5-7 நாட்கள்",withdrawal:"72 மணி நேரம் (3 நாட்கள்)"},
+    {healthIssue:"சுற்று புற்று (பரு)",drugName:"கிரிசியோஃபுல்வின்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"வாய்வழி, நாளுக்கு 7 நாட்கள்",withdrawal:"வெட்டனரி மருத்துவரை அணுகவும் (மாறுபாடு)"},
+    {healthIssue:"கால் மற்றும் வாய் நோய் (FMD)",drugName:"ஃபுளூனிக்சின் மெக்லுமின்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"ஊட்டச்சத்து மற்றும் வலிப்பாடுகள் சிகிச்சை",withdrawal:"36 மணி நேரம் (1.5 நாட்கள்)"},
+    {healthIssue:"தெயிலெரியோசிஸ்",drugName:"புபார்வாக்வோன்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"இரு மருந்து அளவுகள், 48-72 மணி நேர இடைவெளி",withdrawal:"48 மணி நேரம் (2 நாட்கள்)"},
+    {healthIssue:"அனபிளாஸ்மோசிஸ்",drugName:"ஓக்ஸிடெட்ராசைக்கிளின்",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"3-5 நாட்கள் நாடுக்கு ஒருமுறை",withdrawal:"96 மணி நேரம் (4 நாட்கள்)"},
+    {healthIssue:"ஆன்ட்ராக்ஸ்",drugName:"பெனிசிலின் ஜி",dosage:[{min:1,max:6,amount:1000},{min:6,max:24,amount:1500},{min:24,max:60,amount:2500},{min:60,max:600,amount:3000}],schedule:"உயர் மட்ட IV, தீவிர சிகிச்சை",withdrawal:"72 மணி நேரம் (3 நாட்கள்)"}
+  ];
+
+  // Active language data
+  let cows = (language === 'ta') ? cows_ta : cows_en;
+  let medicineRecommendations = (language === 'ta') ? medicineRecommendations_ta : medicineRecommendations_en;
+
+  setTexts(language);
+
+  // Section navigation
+  function showSection(sectionId) {
+    document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active-section'));
+    document.getElementById(sectionId).classList.add('active-section');
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    const navMap = {
+      dashboard: 'navDashboard',
+      'medrec-section': 'navMedRec',
+      'mrl-section': 'navMRL',
+      'amu-section': 'navAMU',
+      'cow-section': 'navCow'
+    };
+    if (navMap[sectionId]) document.getElementById(navMap[sectionId]).classList.add('active');
+  }
+  showSection('dashboard');
+  document.getElementById('navDashboard').onclick = e => { e.preventDefault(); showSection('dashboard'); };
+  document.getElementById('navMedRec').onclick = e => { e.preventDefault(); showSection('medrec-section'); };
+  document.getElementById('navMRL').onclick = e => { e.preventDefault(); showSection('mrl-section'); };
+  document.getElementById('navAMU').onclick = e => { e.preventDefault(); showSection('amu-section'); };
+  document.getElementById('navCow').onclick = e => { e.preventDefault(); showSection('cow-section'); };
+  document.getElementById('logout-btn').onclick = () => {
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+  };
+
+  document.getElementById('recommendBtn').onclick = function() {
+    const breed = document.getElementById('recBreed').value.trim();
+    const ageMonths = parseInt(document.getElementById('recAge').value);
+    const healthIssue = document.getElementById('recDisease').value.trim();
+
+    const rec = medicineRecommendations.find(r =>
+      r.healthIssue.toLowerCase() === healthIssue.toLowerCase()
+    );
+
+    const recommendDiv = document.getElementById('recommendResult');
+    recommendDiv.innerHTML = "";
+
+    if (rec) {
+      let dosageObj = rec.dosage.find(d => ageMonths >= d.min && ageMonths < d.max);
+      if (!dosageObj) dosageObj = rec.dosage[rec.dosage.length - 1];
+
+      recommendDiv.innerHTML =
+        `<div class="alert alert-info">
+          <b>${dict[language].medRecBtn}:</b> ${rec.drugName}<br>
+          <b>${dict[language].medRecAge}:</b> ${dosageObj.amount} mg<br>
+          <b>${dict[language].medRecDisease}:</b> ${rec.schedule}<br>
+          <b>Milk Withdrawal Period:</b> ${rec.withdrawal}
+        </div>`;
+    } else {
+      recommendDiv.innerHTML =
+        `<div class="alert alert-warning">
+          No recommendation found for <b>${healthIssue}</b>.
+        </div>`;
+    }
+  };
+
   function showCowData() {
     const id = document.getElementById("cowId").value.trim();
     const resultDiv = document.getElementById("result");
     if (id === "") {
-      resultDiv.innerHTML = "<p>Please enter a Cow ID.</p>";
+      resultDiv.innerHTML = `<p>${dict[language].cowIdLabel}</p>`;
       return;
     }
     const cow = cows[id];
@@ -196,8 +500,8 @@
       <table>
         <tr><th>Attribute</th><th>Value</th></tr>
         <tr><td>Cow ID</td><td>${id}</td></tr>
-        <tr><td>Breed</td><td>${cow.Breed}</td></tr>
-        <tr><td>Age (Years)</td><td>${cow.Age}</td></tr>
+        <tr><td>${dict[language].medRecBreed}</td><td>${cow.Breed}</td></tr>
+        <tr><td>${dict[language].medRecAge}</td><td>${cow.Age}</td></tr>
         <tr><td>Sex</td><td>${cow.Sex}</td></tr>
         <tr><td>Weight (kg)</td><td>${cow.Weight}</td></tr>
         <tr><td>Vaccination History</td><td>${cow.Vaccination}</td></tr>
@@ -205,389 +509,49 @@
       </table>
     `;
   }
+
+  let mrlData = [];
+  let amuData = [];
+
+  function renderMRL(data) {
+    const tbody = document.querySelector('#mrl-table tbody');
+    tbody.innerHTML = data.map(row => `<tr><td>${row.chemical}</td><td>${row.species}</td><td>${row.maxResidue}</td></tr>`).join('');
+  }
+  function renderAMU(data) {
+    const tbody = document.querySelector('#amu-table tbody');
+    tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.chemical}</td><td>${row.date}</td><td>${row.dosage}</td></tr>`).join('');
+  }
+
+  function filterData(data, searchTerm, keys) {
+    searchTerm = searchTerm.toLowerCase();
+    return data.filter(item => keys.some(key => (item[key] || '').toString().toLowerCase().includes(searchTerm)));
+  }
+
+  document.getElementById('mrl-form').onsubmit = e => {
+    e.preventDefault();
+    const { chemical, species, maxResidue } = e.target.elements;
+    mrlData.push({ chemical: chemical.value, species: species.value, maxResidue: maxResidue.value });
+    e.target.reset();
+    renderMRL(mrlData);
+  };
+  document.getElementById('mrl-search').addEventListener('input', e => {
+    const filtered = filterData(mrlData, e.target.value, ['chemical', 'species']);
+    renderMRL(filtered);
+  });
+  document.getElementById('amu-form').onsubmit = e => {
+    e.preventDefault();
+    const { tagNo, chemical, date, dosage } = e.target.elements;
+    amuData.push({ tagNo: tagNo.value, chemical: chemical.value, date: date.value, dosage: dosage.value });
+    e.target.reset();
+    renderAMU(amuData);
+  };
+  document.getElementById('amu-search').addEventListener('input', e => {
+    const filtered = filterData(amuData, e.target.value, ['tagNo', 'chemical', 'date', 'dosage']);
+    renderAMU(filtered);
+  });
+
+  renderMRL(mrlData);
+  renderAMU(amuData);
 </script>
-</div>
-  
-<div class="container tab-section" id="medicine-log-section">
-  <h3 class="mt-3">Medicine Log</h3>
-
-  <!-- Search Input -->
-  <input type="text" id="medicine-log-search" class="form-control mb-3" placeholder="Search Medicine Log..." />
-
-  <!-- Add Entry Form -->
-  <form id="medicine-form" class="mb-3">
-    <div class="row">
-      <div class="col"><input class="form-control mb-2" name="cowId" placeholder="Cow ID" required></div>
-      <div class="col"><input class="form-control mb-2" name="breed" placeholder="Breed" required></div>
-      <div class="col"><input class="form-control mb-2" name="weight" placeholder="Weight (kg)" required type="number"></div>
-      <div class="col"><input class="form-control mb-2" name="drugName" placeholder="Drug Name" required></div>
-      <div class="col"><input class="form-control mb-2" name="dose" placeholder="Dose (mg)" required type="number"></div>
-      <div class="col"><input class="form-control mb-2" name="route" placeholder="Route" required></div>
-      <div class="col"><input class="form-control mb-2" name="dateAdministered" placeholder="Date Administered" required type="date"></div>
-      <div class="col"><input class="form-control mb-2" name="daysSince" placeholder="Days Since Treatment" required type="number"></div>
-      <div class="col"><input class="form-control mb-2" name="residue" placeholder="Measured Residue (mg/kg)" required type="number" step="0.001"></div>
-      <div class="col"><input class="form-control mb-2" name="mrl" placeholder="MRL (mg/kg)" required type="number" step="0.001"></div>
-      <div class="col"><input class="form-control mb-2" name="withdrawMilk" placeholder="Withdrawal Days Milk" required type="number"></div>
-      <div class="col"><input class="form-control mb-2" name="withdrawMeat" placeholder="Withdrawal Days Meat" required type="number"></div>
-      <div class="col">
-        <select class="form-control mb-2" name="isAntimicrobial" required>
-          <option value="1">Yes</option>
-          <option value="0">No</option>
-        </select>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Entry</button>
-  </form>
-
-  <!-- Medicine Log Table -->
-  <div class="table-responsive bg-white p-2 rounded shadow-sm">
-    <table id="medicine-log-table" class="table table-bordered table-hover text-center">
-      <thead>
-        <tr>
-          <th>Cow ID</th>
-          <th>Breed</th>
-          <th>Weight (kg)</th>
-          <th>Drug Name</th>
-          <th>Dose (mg)</th>
-          <th>Route</th>
-          <th>Date Administered</th>
-          <th>Days Since Treatment</th>
-          <th>Measured Residue (mg/kg)</th>
-          <th>MRL (mg/kg)</th>
-          <th>Withdrawal Days Milk</th>
-          <th>Withdrawal Days Meat</th>
-          <th>Is Antimicrobial</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-
-  <script>
-    // CSV parse function (copy from your working code)
-    function parseCSV(str) {
-      const arr = [];
-      let quote = false;
-      for (let row = 0, col = 0, c = 0; c < str.length; c++) {
-        let cc = str[c], nc = str[c+1];
-        arr[row] = arr[row] || [];
-        arr[row][col] = arr[row][col] || '';
-
-        if (cc === '"' && quote && nc === '"') { arr[row][col] += cc; ++c; continue; }
-        if (cc === '"') { quote = !quote; continue; }
-        if (cc === ',' && !quote) { ++col; continue; }
-        if ((cc === '\n' || cc === '\r') && !quote) {
-          ++row;
-          col = 0;
-          if (cc === '\r' && str[c+1] === '\n') ++c;
-          continue;
-        }
-        arr[row][col] += cc;
-      }
-      return arr;
-    }
-
-    // Your CSV data string here - paste your full data
-    const csvData = `C001,Holstein,450,Oxytetracycline,2000,IM,2025-09-01,5,0.08,0.1,7,28,1
-C002,Jersey,400,Amoxicillin,1500,Oral,2025-09-03,3,0.02,0.05,7,28,1
-C003,Sahiwal,500,Ivermectin,500,SC,2025-09-02,10,0.005,0.01,0,14,0
-C004,Gir,470,Ciprofloxacin,1000,Oral,2025-08-28,12,0.04,0.05,14,35,1
-C005,Holstein,480,Oxytetracycline,2500,IM,2025-09-07,1,0.18,0.1,7,28,1
-C006,Jersey,420,Amoxicillin,2000,IM,2025-09-05,4,0.06,0.05,7,28,1
-C007,Sahiwal,520,Enrofloxacin,1200,Oral,2025-09-06,2,0.03,0.05,10,30,1
-C008,Gir,460,Oxytetracycline,1800,IM,2025-09-08,6,0.09,0.1,7,28,1
-C009,Holstein,455,Ivermectin,600,Oral,2025-09-04,7,0.008,0.01,0,14,0
-C010,Jersey,430,Ciprofloxacin,1100,IM,2025-09-05,8,0.045,0.05,14,35,1
-C011,Holstein,460,Oxytetracycline,2200,IM,2025-09-12,6,0.07,0.1,7,28,1
-C012,Jersey,405,Amoxicillin,1600,Oral,2025-09-14,4,0.03,0.05,7,28,1
-C013,Sahiwal,510,Ivermectin,550,SC,2025-09-10,8,0.012,0.01,0,14,0
-C014,Gir,475,Ciprofloxacin,1200,Oral,2025-09-09,9,0.06,0.05,14,35,1
-C015,Holstein,490,Enrofloxacin,1300,IM,2025-09-15,3,0.04,0.05,10,30,1
-C016,Jersey,415,Amoxicillin,1800,IM,2025-09-13,5,0.07,0.05,7,28,1
-C017,Sahiwal,525,Oxytetracycline,2000,IM,2025-09-11,7,0.09,0.1,7,28,1
-C018,Gir,455,Ivermectin,650,Oral,2025-09-08,10,0.009,0.01,0,14,0
-C019,Holstein,470,Ciprofloxacin,1150,IM,2025-09-07,11,0.055,0.05,14,35,1
-C020,Jersey,435,Enrofloxacin,1250,Oral,2025-09-16,2,0.02,0.05,10,30,1`;
-
-    let medicineLogData = parseCSV(csvData);
-
-    const tbody = document.querySelector('#medicine-log-table tbody');
-    const searchInput = document.getElementById('medicine-log-search');
-    const form = document.getElementById('medicine-form');
-
-    function renderTable(data) {
-      tbody.innerHTML = '';
-      data.forEach(row => {
-        const antimicrobialText = row[12] === '1' ? 'Yes' : 'No';
-        const tr = `<tr>
-          <td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td>
-          <td>${row[4]}</td><td>${row[5]}</td><td>${row[6]}</td><td>${row[7]}</td>
-          <td>${row[8]}</td><td>${row[9]}</td><td>${row[10]}</td><td>${row[11]}</td>
-          <td>${antimicrobialText}</td>
-        </tr>`;
-        tbody.insertAdjacentHTML('beforeend', tr);
-      });
-    }
-
-    renderTable(medicineLogData);
-
-    form.onsubmit = e => {
-      e.preventDefault();
-      const f = e.target;
-      const row = [
-        f.cowId.value, f.breed.value, f.weight.value, f.drugName.value,
-        f.dose.value, f.route.value, f.dateAdministered.value, f.daysSince.value,
-        f.residue.value, f.mrl.value, f.withdrawMilk.value, f.withdrawMeat.value,
-        f.isAntimicrobial.value
-      ];
-      medicineLogData.push(row);
-      renderTable(medicineLogData);
-      f.reset();
-    };
-
-    searchInput.addEventListener('input', () => {
-      const term = searchInput.value.toLowerCase();
-      const filtered = medicineLogData.filter(row => row.some(cell => cell.toLowerCase().includes(term)));
-      renderTable(filtered);
-    });
-  </script>
-</div>
-
-
-  <!-- Livestock Section -->
-  <div class="container tab-section" id="livestock-section">
-    <h3 class="mt-3"><i class="fas fa-cow"></i> <span id="manageLivestock"></span></h3>
-    <form id="livestock-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
-      <input type="text" class="form-control mr-2 mb-2" name="species" required placeholder="" />
-      <input type="text" class="form-control mr-2 mb-2" name="breed" required placeholder="" />
-      <input type="text" class="form-control mr-2 mb-2" name="tagNo" required placeholder="" />
-      <button type="submit" class="btn btn-success mb-2"><i class="fas fa-plus"></i> <span id="addLivestockBtn"></span></button>
-    </form>
-    <input type="text" id="livestock-search" class="form-control mb-3" placeholder="" />
-    <div class="table-responsive bg-white p-2 rounded shadow-sm">
-      <table class="table table-bordered text-center" id="livestock-table">
-        <thead><tr><th>Tag No.</th><th>Species</th><th>Breed</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- MRL Section -->
-  <div class="container tab-section" id="mrl-section">
-    <h3 class="mt-3"><i class="fas fa-vial"></i> <span id="manageMRL"></span></h3>
-    <form id="mrl-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
-      <input type="text" class="form-control mr-2 mb-2" name="chemical" required placeholder="" />
-      <input type="text" class="form-control mr-2 mb-2" name="species" required placeholder="" />
-      <input type="number" class="form-control mr-2 mb-2" name="maxResidue" step="0.01" required placeholder="" />
-      <button type="submit" class="btn btn-warning text-white mb-2"><i class="fas fa-plus"></i> <span id="addMRLBtn"></span></button>
-    </form>
-    <input type="text" id="mrl-search" class="form-control mb-3" placeholder="" />
-    <div class="table-responsive bg-white p-2 rounded shadow-sm">
-      <table class="table table-bordered text-center" id="mrl-table">
-        <thead><tr><th>Chemical</th><th>Species</th><th>Max Residue</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- AMU Section -->
-  <div class="container tab-section" id="amu-section">
-    <h3 class="mt-3"><i class="fas fa-syringe"></i> <span id="logAMU"></span></h3>
-    <form id="amu-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
-      <input type="text" class="form-control mr-2 mb-2" name="tagNo" required placeholder="" />
-      <input type="text" class="form-control mr-2 mb-2" name="chemical" required placeholder="" />
-      <input type="date" class="form-control mr-2 mb-2" name="date" required />
-      <input type="text" class="form-control mr-2 mb-2" name="dosage" required placeholder="" />
-      <button type="submit" class="btn btn-danger mb-2"><i class="fas fa-plus"></i> <span id="logAMUBtn"></span></button>
-    </form>
-    <input type="text" id="amu-search" class="form-control mb-3" placeholder="" />
-    <div class="table-responsive bg-white p-2 rounded shadow-sm">
-      <table class="table table-bordered text-center" id="amu-table">
-        <thead><tr><th>Tag No.</th><th>Chemical</th><th>Date</th><th>Dosage</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-
-  <script>
-    const language = localStorage.getItem('language') || 'en';
-
-    const dict = {
-      en: {
-        dashboard: 'Dashboard',
-        livestock: 'Livestock',
-        mrl: 'MRL',
-        amuLogs: 'AMU Logs',
-        logout: 'Logout',
-        dashboardWelcome: 'Welcome to FarmPortal Dashboard',
-        dashboardDesc: 'Use navigation above to manage Livestock, MRL, and AMU logs.',
-        manageLivestock: 'Manage Livestock',
-        speciesPlaceholder: 'Species',
-        breedPlaceholder: 'Breed',
-        tagNoPlaceholder: 'Tag No.',
-        addLivestockBtn: 'Add Livestock',
-        searchLivestockPlaceholder: 'Search Livestock...',
-        manageMRL: 'Manage Maximum Residue Limits (MRL)',
-        chemicalPlaceholder: 'Chemical',
-        mrlSpeciesPlaceholder: 'Species',
-        maxResiduePlaceholder: 'Max Residue (mg/kg)',
-        addMRLBtn: 'Add MRL',
-        searchMRLPlaceholder: 'Search MRL...',
-        logAMU: 'Log Antimicrobial Usage (AMU)',
-        amuTagNoPlaceholder: 'Livestock Tag No.',
-        amuChemicalPlaceholder: 'Chemical',
-        amuDatePlaceholder: 'Date',
-        amuDosagePlaceholder: 'Dosage',
-        logAMUBtn: 'Log AMU',
-        searchAMUPlaceholder: 'Search AMU Logs...'
-      },
-      ta: {
-        dashboard: '[டாஷ்போர்டு]',
-        livestock: '[மிருகபாலை]',
-        mrl: '[அதிகபட்ச இருப்பு வரம்புகள்]',
-        amuLogs: '[மருந்து பயன்பாட்டு பதிவுகள்]',
-        logout: '[வெளியேறு]',
-        dashboardWelcome: '[FarmPortal தளத்திற்கு வரவேற்கின்றோம்]',
-        dashboardDesc: '[மேலே உள்ள வழிசெலுத்தலைப் பயன்படுத்தி மிருகபாலை, MRL மற்றும் AMU பதிவுகளை நிர்வகிக்கவும்.]',
-        manageLivestock: '[மிருகபாலை நிர்வகி]',
-        speciesPlaceholder: '[வகை]',
-        breedPlaceholder: '[சீரியல்]',
-        tagNoPlaceholder: '[தொகுதி எண்]',
-        addLivestockBtn: '[மிருகபாலைச் சேர்]',
-        searchLivestockPlaceholder: '[:மிருகபாலைத் தேடு...]',
-        manageMRL: '[அதிகபட்ச இருப்பு அளவு (MRL) நிர்வகி]',
-        chemicalPlaceholder: '[கொழும்பு]',
-        mrlSpeciesPlaceholder: '[வகை]',
-        maxResiduePlaceholder: '[அதிகபட்ச இருப்பு (மி.கி/கி)]',
-        addMRLBtn: '[MRL சேர்க்க]',
-        searchMRLPlaceholder: '[MRL தேடு...]',
-        logAMU: '[மருந்து பயன்பாடு பதிவு]',
-        amuTagNoPlaceholder: '[மிருகபாலை தொகுதி எண்]',
-        amuChemicalPlaceholder: '[மருந்து]',
-        amuDatePlaceholder: '[தேதி]',
-        amuDosagePlaceholder: '[கால அளவு]',
-        logAMUBtn: '[மருந்து பதிவு செய்]',
-        searchAMUPlaceholder: '[AMU பதிவுகளைத் தேடு...]'
-      }
-    };
-
-    function setTexts(lang) {
-      document.getElementById('navDashboard').innerHTML = `<i class="fas fa-tachometer-alt"></i> ${dict[lang].dashboard}`;
-      document.getElementById('navLivestock').innerHTML = `<i class="fas fa-cow"></i> ${dict[lang].livestock}`;
-      document.getElementById('navMRL').innerHTML = `<i class="fas fa-vial"></i> ${dict[lang].mrl}`;
-      document.getElementById('navAMU').innerHTML = `<i class="fas fa-syringe"></i> ${dict[lang].amuLogs}`;
-      document.getElementById('logoutText').textContent = dict[lang].logout;
-      document.getElementById('dashboardTitle').textContent = dict[lang].dashboardWelcome;
-      document.getElementById('dashboardDesc').textContent = dict[lang].dashboardDesc;
-      document.getElementById('manageLivestock').textContent = dict[lang].manageLivestock;
-      const livestockForm = document.getElementById('livestock-form');
-      livestockForm.species.placeholder = dict[lang].speciesPlaceholder;
-      livestockForm.breed.placeholder = dict[lang].breedPlaceholder;
-      livestockForm.tagNo.placeholder = dict[lang].tagNoPlaceholder;
-      livestockForm.querySelector('button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].addLivestockBtn}`;
-      document.getElementById('livestock-search').placeholder = dict[lang].searchLivestockPlaceholder;
-      document.getElementById('manageMRL').textContent = dict[lang].manageMRL;
-      const mrlForm = document.getElementById('mrl-form');
-      mrlForm.chemical.placeholder = dict[lang].chemicalPlaceholder;
-      mrlForm.species.placeholder = dict[lang].mrlSpeciesPlaceholder;
-      mrlForm.maxResidue.placeholder = dict[lang].maxResiduePlaceholder;
-      mrlForm.querySelector('button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].addMRLBtn}`;
-      document.getElementById('mrl-search').placeholder = dict[lang].searchMRLPlaceholder;
-      document.getElementById('logAMU').textContent = dict[lang].logAMU;
-      const amuForm = document.getElementById('amu-form');
-      amuForm.tagNo.placeholder = dict[lang].amuTagNoPlaceholder;
-      amuForm.chemical.placeholder = dict[lang].amuChemicalPlaceholder;
-      amuForm.date.placeholder = dict[lang].amuDatePlaceholder;
-      amuForm.dosage.placeholder = dict[lang].amuDosagePlaceholder;
-      amuForm.querySelector('button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].logAMUBtn}`;
-      document.getElementById('amu-search').placeholder = dict[lang].searchAMUPlaceholder;
-    }
-
-    setTexts(language);
-
-    function showSection(sectionId) {
-      document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active-section'));
-      document.getElementById(sectionId).classList.add('active-section');
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      const navMap = {
-        dashboard: 'navDashboard',
-        'livestock-section': 'navLivestock',
-        'mrl-section': 'navMRL',
-        'amu-section': 'navAMU',
-        'medicine-log-section': 'navMedicineLog'
-      };
-      if (navMap[sectionId]) document.getElementById(navMap[sectionId]).classList.add('active');
-    }
-    showSection('dashboard');
-    document.getElementById('navDashboard').onclick = e => { e.preventDefault(); showSection('dashboard'); };
-    document.getElementById('navLivestock').onclick = e => { e.preventDefault(); showSection('livestock-section'); };
-    document.getElementById('navMRL').onclick = e => { e.preventDefault(); showSection('mrl-section'); };
-    document.getElementById('navAMU').onclick = e => { e.preventDefault(); showSection('amu-section'); };
-    document.getElementById('navMedicineLog').onclick = e => { e.preventDefault(); showSection('medicine-log-section'); };
-    document.getElementById('logout-btn').onclick = () => {
-      localStorage.removeItem('token');
-      window.location.href = 'login.html';
-    };
-
-    let livestockData = [];
-    let mrlData = [];
-    let amuData = [];
-
-    function renderLivestock(data) {
-      const tbody = document.querySelector('#livestock-table tbody');
-      tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.species}</td><td>${row.breed}</td></tr>`).join('');
-    }
-    function renderMRL(data) {
-      const tbody = document.querySelector('#mrl-table tbody');
-      tbody.innerHTML = data.map(row => `<tr><td>${row.chemical}</td><td>${row.species}</td><td>${row.maxResidue}</td></tr>`).join('');
-    }
-    function renderAMU(data) {
-      const tbody = document.querySelector('#amu-table tbody');
-      tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.chemical}</td><td>${row.date}</td><td>${row.dosage}</td></tr>`).join('');
-    }
-
-    function filterData(data, searchTerm, keys) {
-      searchTerm = searchTerm.toLowerCase();
-      return data.filter(item => keys.some(key => (item[key] || '').toString().toLowerCase().includes(searchTerm)));
-    }
-
-    document.getElementById('livestock-form').onsubmit = e => {
-      e.preventDefault();
-      const { species, breed, tagNo } = e.target.elements;
-      livestockData.push({ species: species.value, breed: breed.value, tagNo: tagNo.value });
-      e.target.reset();
-      renderLivestock(livestockData);
-    };
-    document.getElementById('livestock-search').addEventListener('input', e => {
-      const filtered = filterData(livestockData, e.target.value, ['species', 'breed', 'tagNo']);
-      renderLivestock(filtered);
-    });
-    document.getElementById('mrl-form').onsubmit = e => {
-      e.preventDefault();
-      const { chemical, species, maxResidue } = e.target.elements;
-      mrlData.push({ chemical: chemical.value, species: species.value, maxResidue: maxResidue.value });
-      e.target.reset();
-      renderMRL(mrlData);
-    };
-    document.getElementById('mrl-search').addEventListener('input', e => {
-      const filtered = filterData(mrlData, e.target.value, ['chemical', 'species']);
-      renderMRL(filtered);
-    });
-    document.getElementById('amu-form').onsubmit = e => {
-      e.preventDefault();
-      const { tagNo, chemical, date, dosage } = e.target.elements;
-      amuData.push({ tagNo: tagNo.value, chemical: chemical.value, date: date.value, dosage: dosage.value });
-      e.target.reset();
-      renderAMU(amuData);
-    };
-    document.getElementById('amu-search').addEventListener('input', e => {
-      const filtered = filterData(amuData, e.target.value, ['tagNo', 'chemical', 'date', 'dosage']);
-      renderAMU(filtered);
-    });
-
-    renderLivestock(livestockData);
-    renderMRL(mrlData);
-    renderAMU(amuData);
-  </script>
 </body>
 </html>

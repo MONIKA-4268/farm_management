@@ -10,54 +10,53 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #001f4d; /* Dark blue background */
-      color: #fff;
+      background: linear-gradient(135deg, #e6ffe6 0%, #a9dfbf 45%, #229954 100%); /* Nature-inspired green gradient */
+      color: #222;
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     .lang-card {
       background: #fff; /* White card */
       padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 18px #003366;
+      border-radius: 14px;
+      box-shadow: 0 0 18px #7dcea0;
       text-align: center;
       width: 310px;
+      border: 2px solid #229954;
     }
     button {
       margin: 10px;
       width: 100px;
-      border: 2px solid #001f4d;
-      background: #001f4d;
+      border: 2px solid #229954;
+      background: #229954;
       color: #fff;
       font-weight: bold;
+      border-radius: 6px;
       transition: background 0.3s, color 0.3s, border-color 0.3s;
     }
     button:hover {
       background: #fff;
-      color: #001f4d;
-      border-color: #001f4d;
+      color: #229954;
+      border-color: #229954;
       cursor: pointer;
     }
     img.logo {
       display: block;
       margin: 0 auto 20px auto;
       height: 80px;
-      /* Uncomment below for blue monochrome effect if using PNG/JPG
-      filter: grayscale(100%) brightness(0.8) sepia(1) hue-rotate(200deg); 
-      */
+      filter: brightness(0.95) sepia(0.3) hue-rotate(35deg); /* Slight green tint */
     }
     h3 {
-      color: rgb(0, 31, 77);
+      color: #229954;
       margin-bottom: 25px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div class="lang-card">
-    <!-- Use your dark blue/white logo: PNG, JPG, SVG -->
-   <img src="farm.jpg" alt="Farmhouse Livestock" class="logo" style="height:130px;">
-
-
+    <!-- Use your green/nature-themed logo: PNG, JPG, SVG -->
+    <img src="farm.jpg" alt="Farmhouse Livestock" class="logo" style="height:130px;">
     <h3>Select Language</h3>
     <button class="btn" onclick="choose('en')">English</button>
     <button class="btn" onclick="choose('ta')">தமிழ்</button>

@@ -8,7 +8,7 @@ const livestockRoutes = require('./routes/livestock');
 const chemicalRoutes = require('./routes/chemical');
 const mrlRoutes = require('./routes/mrl');
 const amuRoutes = require('./routes/amu');
-const cowRoutes = require('./routes/cowRoutes');
+const cowsRoutes = require('./routes/cowsRoutes');
 const medicineRoutes = require('./routes/medicineRoutes');
 
 
@@ -26,7 +26,7 @@ app.use('/api/livestock', livestockRoutes);
 app.use('/api/chemicals', chemicalRoutes);
 app.use('/api/mrl', mrlRoutes);
 app.use('/api/amu', amuRoutes);
-app.use('/api/cows', cowRoutes);           // <-- added here
+app.use('/api/cows', cowsRoutes);           // <-- added here
 app.use('/api/medicine', medicineRoutes); // <-- added here
 
 const PORT = process.env.PORT || 5000;
