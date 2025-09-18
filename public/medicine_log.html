@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSV Parsing and Display</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    thead {
+      background: #f0f0f0;
+    }
+    tbody tr:nth-child(odd) {
+      background: #fafafa;
+    }
+    tbody tr:hover {
+      background: #d0e7fd;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Medicine Log Table</h1>
+
+  <input type="text" id="searchInput" placeholder="Search in table..." style="padding:8px; width: 100%; max-width: 400px;">
+
+  <table id="medicineTable">
+    <thead>
+      <tr>
+        <th>Cow ID</th>
+        <th>Breed</th>
+        <th>Weight (kg)</th>
+        <th>Drug Name</th>
+        <th>Dose (mg)</th>
+        <th>Route</th>
+        <th>Date Administered</th>
+        <th>Days Since Treatment</th>
+        <th>Measured Residue (mg/kg)</th>
+        <th>MRL (mg/kg)</th>
+        <th>Withdrawal Days Milk</th>
+        <th>Withdrawal Days Meat</th>
+        <th>Is Antimicrobial</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // CSV Parsing function
+    function parseCSV(str) {
+      const arr = [];
+      let quote = false;
+      for (let row = 0, col = 0, c = 0; c < str.length; c++) {
+        let cc = str[c], nc = str[c+1];
+        arr[row] = arr[row] || [];
+        arr[row][col] = arr[row][col] || '';
+
+        if (cc === '"' && quote && nc === '"') {
+          arr[row][col] += cc;
+          ++c;
+          continue;
+        }
+        if (cc === '"') {
+          quote = !quote;
+          continue;
+        }
+        if (cc === ',' && !quote) {
+          ++col;
+          continue;
+        }
+        if ((cc === '\n' || cc === '\r') && !quote) {
+          ++row;
+          col = 0;
+          // Handle \r\n
+          if (cc === '\r' && str[c+1] === '\n') {
+            ++c;
+          }
+          continue;
+        }
+        arr[row][col] += cc;
+      }
+      return arr;
+    }
+
+    // Your CSV data as a raw string (can also load from file)
+    const csvData = `C001,Holstein,450,Oxytetracycline,2000,IM,2025-09-01,5,0.08,0.1,7,28,1
+C002,Jersey,400,Amoxicillin,1500,Oral,2025-09-03,3,0.02,0.05,7,28,1
+C003,Sahiwal,500,Ivermectin,500,SC,2025-09-02,10,0.005,0.01,0,14,0
+C004,Gir,470,Ciprofloxacin,1000,Oral,2025-08-28,12,0.04,0.05,14,35,1
+C005,Holstein,480,Oxytetracycline,2500,IM,2025-09-07,1,0.18,0.1,7,28,1
+C006,Jersey,420,Amoxicillin,2000,IM,2025-09-05,4,0.06,0.05,7,28,1
+C007,Sahiwal,520,Enrofloxacin,1200,Oral,2025-09-06,2,0.03,0.05,10,30,1
+C008,Gir,460,Oxytetracycline,1800,IM,2025-09-08,6,0.09,0.1,7,28,1
+C009,Holstein,455,Ivermectin,600,Oral,2025-09-04,7,0.008,0.01,0,14,0
+C010,Jersey,430,Ciprofloxacin,1100,IM,2025-09-05,8,0.045,0.05,14,35,1
+C011,Holstein,460,Oxytetracycline,2200,IM,2025-09-12,6,0.07,0.1,7,28,1
+C012,Jersey,405,Amoxicillin,1600,Oral,2025-09-14,4,0.03,0.05,7,28,1
+C013,Sahiwal,510,Ivermectin,550,SC,2025-09-10,8,0.012,0.01,0,14,0
+C014,Gir,475,Ciprofloxacin,1200,Oral,2025-09-09,9,0.06,0.05,14,35,1
+C015,Holstein,490,Enrofloxacin,1300,IM,2025-09-15,3,0.04,0.05,10,30,1
+C016,Jersey,415,Amoxicillin,1800,IM,2025-09-13,5,0.07,0.05,7,28,1
+C017,Sahiwal,525,Oxytetracycline,2000,IM,2025-09-11,7,0.09,0.1,7,28,1
+C018,Gir,455,Ivermectin,650,Oral,2025-09-08,10,0.009,0.01,0,14,0
+C019,Holstein,470,Ciprofloxacin,1150,IM,2025-09-07,11,0.055,0.05,14,35,1
+C020,Jersey,435,Enrofloxacin,1250,Oral,2025-09-16,2,0.02,0.05,10,30,1`;
+
+    // Parse CSV to array of arrays
+    const parsedData = parseCSV(csvData);
+
+    // Get table body element
+    const tbody = document.querySelector('#medicineTable tbody');
+
+    // Function to render table rows from parsed data
+    function renderTable(data) {
+      tbody.innerHTML = '';
+      data.forEach(row => {
+        // Convert antimicrobial flag to Yes/No
+        let antimicrobialText = (row[12] === '1') ? 'Yes' : 'No';
+
+        // Build HTML row string
+        const tr = `<tr>
+          <td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td>
+          <td>${row[4]}</td><td>${row[5]}</td><td>${row[6]}</td><td>${row[7]}</td>
+          <td>${row[8]}</td><td>${row[9]}</td><td>${row[10]}</td><td>${row[11]}</td>
+          <td>${antimicrobialText}</td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', tr);
+      });
+    }
+
+    // Initially render full table
+    renderTable(parsedData);
+
+    // Search/filter functionality
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+      const filtered = parsedData.filter(row => row.some(cell => cell.toLowerCase().includes(searchTerm)));
+      renderTable(filtered);
+    });
+  </script>
+</body>
+</html>
