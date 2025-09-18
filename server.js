@@ -11,6 +11,7 @@ const amuRoutes = require('./routes/amu');
 const cowRoutes = require('./routes/cowRoutes');
 const medicineRoutes = require('./routes/medicineRoutes');
 
+
 const app = express();
 
 app.use(cors());

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const MedicineLog = require('../models/medicinelog');
+const mongoose = require('mongoose');
 
 // Log medicine for a cow
 router.post('/', async (req, res) => {

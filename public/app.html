@@ -8,24 +8,25 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
   <style>
     body {
-      background: #0483c6; /* Flat vibrant blue */
+      background: #0483c6;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #222; /* Default dark grey text for contrast on white */
+      color: #222;
     }
     .navbar {
-      background: #0483c6 !important; /* Match screenshot blue */
+      background: #0483c6 !important;
     }
     .navbar-brand {
-      color: #1b355c !important; /* Deep blue text */
+      color: #1b355c !important;
       font-weight: bold;
       font-size: 2rem;
       letter-spacing: 2px;
     }
     .nav-link {
-      color: #f7fafc !important; /* Light text on blue navbar */
+      color: #f7fafc !important;
       font-weight: 500;
     }
-    .nav-link.active, .nav-link:hover {
+    .nav-link.active,
+    .nav-link:hover {
       color: #053366 !important;
       background: #e4f2fb;
       border-radius: 6px;
@@ -39,6 +40,8 @@
       margin-top: 2.5rem;
       animation: fadeInDown 0.4s;
       color: #1b355c;
+      min-height: 70vh;
+      overflow-y: auto;
     }
     .active-section {
       display: block !important;
@@ -53,6 +56,27 @@
         transform: translateY(0);
       }
     }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #1b355c;
+    }
+    thead {
+      background: #e4f2fb;
+      color: #053366;
+      font-weight: bold;
+    }
+    tbody tr:nth-child(odd) {
+      background: #f5fbff;
+    }
+    tbody tr:hover {
+      background: #dbeeff;
+    }
+    th, td {
+      padding: 12px 8px;
+      border: 1px solid #e1eaf1;
+      text-align: center;
+    }
     .form-inline, .form-group, .form-control {
       background: #fff !important;
       color: #222 !important;
@@ -62,329 +86,508 @@
       font-style: italic;
       font-size: 1em;
     }
-    th, td {
-      color: #1b355c !important;
-      font-size: 1em;
-      border-color: #e1eaf1 !important;
-    }
-    thead {
-      background: #e4f2fb;
-      color: #053366 !important;
-      font-weight: bold;
-    }
-    tbody tr:nth-child(odd) {
-      background: #f5fbff;
-    }
     .btn-success, .btn-warning, .btn-danger, .btn-outline-danger {
       font-weight: 600;
       border-radius: 5px;
     }
-    .btn-success { background: #0483c6; border: none; }
-    .btn-success:hover { background: #0369a3; }
-    .btn-warning { background: #ffc107; color: #222; border: none; }
-    .btn-warning:hover { background: #ffb300; }
-    .btn-danger { background: #e53935; border: none; }
-    .btn-danger:hover { background: #ba1b1b; }
-    .btn-outline-danger { border-color: #ba1b1b; color: #ba1b1b; }
-    .btn-outline-danger:hover { background: #ba1b1b; color: #fff; }
+    .btn-success {
+      background: #0483c6;
+      border: none;
+      color: white;
+    }
+    .btn-success:hover {
+      background: #0369a3;
+    }
+    .btn-warning {
+      background: #ffc107;
+      border: none;
+      color: #222;
+    }
+    .btn-warning:hover {
+      background: #ffb300;
+    }
+    .btn-danger {
+      background: #e53935;
+      border: none;
+      color: white;
+    }
+    .btn-danger:hover {
+      background: #ba1b1b;
+    }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
-    <a class="navbar-brand" href="#">
-      <img src="farm.jpg" alt="Farm Logo" style="height:48px;vertical-align:middle;margin-right:10px;">
-      FarmPortal
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="#" id="navDashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" id="navLivestock"><i class="fas fa-cow"></i> Livestock</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" id="navMRL"><i class="fas fa-vial"></i> MRL</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" id="navAMU"><i class="fas fa-syringe"></i> AMU Logs</a></li>
-      </ul>
-      <button id="logout-btn" class="btn btn-outline-danger my-2 my-sm-0"><i class="fa fa-sign-out-alt"></i> Logout</button>
-    </div>
-  </nav>
-  
-  <!-- Dashboard -->
-  <div class="container tab-section" id="dashboard">
-    <h2></h2>
-    <p></p>
-  </div>
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <a class="navbar-brand" href="#">
+      <img src="farm.jpg" alt="Farm Logo" style="height:48px;vertical-align:middle;margin-right:10px;" />
+      FarmPortal
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="#" id="navDashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navCow"><i class="fas fa-hippo"></i> Cow</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navMedicineLog"><i class="fas fa-cogs"></i> Medicine Log</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navLivestock"><i class="fas fa-cow"></i> Livestock</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navMRL"><i class="fas fa-vial"></i> MRL</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" id="navAMU"><i class="fas fa-syringe"></i> AMU Logs</a></li>
+      </ul>
+      <button id="logout-btn" class="btn btn-outline-danger my-2 my-sm-0"><i class="fa fa-sign-out-alt"></i> <span id="logoutText"></span></button>
+    </div>
+  </nav>
 
-  <!-- Livestock Section -->
-  <div class="container tab-section" id="livestock-section">
-    <h3 class="mt-3"><i class="fas fa-cow"></i> </h3>
+  <!-- Dashboard -->
+  <div class="container tab-section active-section" id="dashboard">
+    <h2 id="dashboardTitle"></h2>
+    <p id="dashboardDesc"></p>
+  </div>
 
-    <form id="livestock-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
-      <input type="text" class="form-control mr-2 mb-2" name="species" required />
-      <input type="text" class="form-control mr-2 mb-2" name="breed" required />
-      <input type="text" class="form-control mr-2 mb-2" name="tagNo" required />
-      <button type="submit" class="btn btn-success mb-2"><i class="fas fa-plus"></i> </button>
-    </form>
+<h2>Enter Cow ID to Get Details</h2>
+<label for="cowId">Cow ID:</label>
+<input type="text" id="cowId" placeholder="e.g., CID-001" />
+<button onclick="showCowData()">Show Details</button>
 
-    <input type="text" id="livestock-search" class="form-control mb-3" />
+<div id="result"></div>
 
-    <div class="table-responsive bg-white p-2 rounded shadow-sm">
-      <table class="table table-bordered text-center" id="livestock-table">
-        <thead><tr><th></th><th></th><th></th></tr></thead>
-        <tbody></tbody>
+<script>
+  // Cow data object indexed by Cow ID
+  const cows = {
+    "CID-001": {"Breed": "Holstein-Friesian", "Age": 4.4, "Sex": "F", "Weight": 680, "Vaccination": "Up-to-date", "MilkYield": 31},
+    "CID-002": {"Breed": "Holstein-Friesian", "Age": 5.0, "Sex": "F", "Weight": 710, "Vaccination": "FMD (2025-03-10)", "MilkYield": 29},
+    "CID-003": {"Breed": "Jersey", "Age": 2.6, "Sex": "F", "Weight": 440, "Vaccination": "Up-to-date", "MilkYield": 21},
+    "CID-004": {"Breed": "Angus", "Age": 2.8, "Sex": "M", "Weight": 850, "Vaccination": "Up-to-date", "MilkYield": 0},
+    "CID-005": {"Breed": "Jersey", "Age": 6.1, "Sex": "F", "Weight": 465, "Vaccination": "BQ Vaccine (2025-05-01)", "MilkYield": 0},
+    "CID-006": {"Breed": "Hereford", "Age": 1.5, "Sex": "F", "Weight": 520, "Vaccination": "Up-to-date", "MilkYield": 0},
+    "CID-007": {"Breed": "Gir", "Age": 4.0, "Sex": "F", "Weight": 490, "Vaccination": "Anthrax (2025-04-15)", "MilkYield": 13},
+    "CID-008": {"Breed": "Angus", "Age": 3.3, "Sex": "M", "Weight": 910, "Vaccination": "Up-to-date", "MilkYield": 0},
+    "CID-009": {"Breed": "Holstein-Friesian", "Age": 2.2, "Sex": "F", "Weight": 590, "Vaccination": "Up-to-date", "MilkYield": 25},
+    "CID-010": {"Breed": "Jersey", "Age": 5.6, "Sex": "F", "Weight": 455, "Vaccination": "FMD Booster (2025-03-12)", "MilkYield": 20},
+    "C011": {"Breed": "Holstein", "Age": 4.5, "Sex": "F", "Weight": 460, "Vaccination": "FMD Booster (2025-03-15)", "MilkYield": 28},
+    "C012": {"Breed": "Jersey", "Age": 5.1, "Sex": "F", "Weight": 405, "Vaccination": "Up-to-date", "MilkYield": 20},
+    "C013": {"Breed": "Sahiwal", "Age": 6.0, "Sex": "F", "Weight": 510, "Vaccination": "Up-to-date", "MilkYield": 14},
+    "C014": {"Breed": "Gir", "Age": 4.8, "Sex": "F", "Weight": 475, "Vaccination": "Anthrax (2025-04-02)", "MilkYield": 12},
+    "C015": {"Breed": "Holstein", "Age": 3.9, "Sex": "F", "Weight": 490, "Vaccination": "Up-to-date", "MilkYield": 30},
+    "C016": {"Breed": "Jersey", "Age": 5.5, "Sex": "F", "Weight": 415, "Vaccination": "Up-to-date", "MilkYield": 22},
+    "C017": {"Breed": "Sahiwal", "Age": 6.2, "Sex": "F", "Weight": 525, "Vaccination": "FMD (2025-03-20)", "MilkYield": 15},
+    "C018": {"Breed": "Gir", "Age": 5.7, "Sex": "F", "Weight": 455, "Vaccination": "Up-to-date", "MilkYield": 11},
+    "C019": {"Breed": "Holstein", "Age": 4.2, "Sex": "F", "Weight": 470, "Vaccination": "BQ Vaccine (2025-05-11)", "MilkYield": 29},
+    "C020": {"Breed": "Jersey", "Age": 3.8, "Sex": "F", "Weight": 435, "Vaccination": "Up-to-date", "MilkYield": 19}
+  };
+
+  function showCowData() {
+    const id = document.getElementById("cowId").value.trim();
+    const resultDiv = document.getElementById("result");
+    if (id === "") {
+      resultDiv.innerHTML = "<p>Please enter a Cow ID.</p>";
+      return;
+    }
+    const cow = cows[id];
+    if (!cow) {
+      resultDiv.innerHTML = `<p>No data found for Cow ID: <strong>${id}</strong></p>`;
+      return;
+    }
+    resultDiv.innerHTML = `
+      <table>
+        <tr><th>Attribute</th><th>Value</th></tr>
+        <tr><td>Cow ID</td><td>${id}</td></tr>
+        <tr><td>Breed</td><td>${cow.Breed}</td></tr>
+        <tr><td>Age (Years)</td><td>${cow.Age}</td></tr>
+        <tr><td>Sex</td><td>${cow.Sex}</td></tr>
+        <tr><td>Weight (kg)</td><td>${cow.Weight}</td></tr>
+        <tr><td>Vaccination History</td><td>${cow.Vaccination}</td></tr>
+        <tr><td>Milk Yield (L/day)</td><td>${cow.MilkYield}</td></tr>
       </table>
+    `;
+  }
+</script>
+</div>
+  
+<div class="container tab-section" id="medicine-log-section">
+  <h3 class="mt-3">Medicine Log</h3>
+
+  <!-- Search Input -->
+  <input type="text" id="medicine-log-search" class="form-control mb-3" placeholder="Search Medicine Log..." />
+
+  <!-- Add Entry Form -->
+  <form id="medicine-form" class="mb-3">
+    <div class="row">
+      <div class="col"><input class="form-control mb-2" name="cowId" placeholder="Cow ID" required></div>
+      <div class="col"><input class="form-control mb-2" name="breed" placeholder="Breed" required></div>
+      <div class="col"><input class="form-control mb-2" name="weight" placeholder="Weight (kg)" required type="number"></div>
+      <div class="col"><input class="form-control mb-2" name="drugName" placeholder="Drug Name" required></div>
+      <div class="col"><input class="form-control mb-2" name="dose" placeholder="Dose (mg)" required type="number"></div>
+      <div class="col"><input class="form-control mb-2" name="route" placeholder="Route" required></div>
+      <div class="col"><input class="form-control mb-2" name="dateAdministered" placeholder="Date Administered" required type="date"></div>
+      <div class="col"><input class="form-control mb-2" name="daysSince" placeholder="Days Since Treatment" required type="number"></div>
+      <div class="col"><input class="form-control mb-2" name="residue" placeholder="Measured Residue (mg/kg)" required type="number" step="0.001"></div>
+      <div class="col"><input class="form-control mb-2" name="mrl" placeholder="MRL (mg/kg)" required type="number" step="0.001"></div>
+      <div class="col"><input class="form-control mb-2" name="withdrawMilk" placeholder="Withdrawal Days Milk" required type="number"></div>
+      <div class="col"><input class="form-control mb-2" name="withdrawMeat" placeholder="Withdrawal Days Meat" required type="number"></div>
+      <div class="col">
+        <select class="form-control mb-2" name="isAntimicrobial" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
     </div>
+    <button type="submit" class="btn btn-primary">Add Entry</button>
+  </form>
+
+  <!-- Medicine Log Table -->
+  <div class="table-responsive bg-white p-2 rounded shadow-sm">
+    <table id="medicine-log-table" class="table table-bordered table-hover text-center">
+      <thead>
+        <tr>
+          <th>Cow ID</th>
+          <th>Breed</th>
+          <th>Weight (kg)</th>
+          <th>Drug Name</th>
+          <th>Dose (mg)</th>
+          <th>Route</th>
+          <th>Date Administered</th>
+          <th>Days Since Treatment</th>
+          <th>Measured Residue (mg/kg)</th>
+          <th>MRL (mg/kg)</th>
+          <th>Withdrawal Days Milk</th>
+          <th>Withdrawal Days Meat</th>
+          <th>Is Antimicrobial</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
 
-  <!-- MRL Section -->
-  <div class="container tab-section" id="mrl-section">
-    <h3 class="mt-3"><i class="fas fa-vial"></i> </h3>
-
-    <form id="mrl-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
-      <input type="text" class="form-control mr-2 mb-2" name="chemical" required />
-      <input type="text" class="form-control mr-2 mb-2" name="species" required />
-      <input type="number" class="form-control mr-2 mb-2" name="maxResidue" step="0.01" required />
-      <button type="submit" class="btn btn-warning text-white mb-2"><i class="fas fa-plus"></i> </button>
-    </form>
-
-    <input type="text" id="mrl-search" class="form-control mb-3" />
-
-    <div class="table-responsive bg-white p-2 rounded shadow-sm">
-      <table class="table table-bordered text-center" id="mrl-table">
-        <thead><tr><th></th><th></th><th></th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- AMU Section -->
-  <div class="container tab-section" id="amu-section">
-    <h3 class="mt-3"><i class="fas fa-syringe"></i> </h3>
-
-    <form id="amu-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
-      <input type="text" class="form-control mr-2 mb-2" name="tagNo" required />
-      <input type="text" class="form-control mr-2 mb-2" name="chemical" required />
-      <input type="date" class="form-control mr-2 mb-2" name="date" required />
-      <input type="text" class="form-control mr-2 mb-2" name="dosage" required />
-      <button type="submit" class="btn btn-danger mb-2"><i class="fas fa-plus"></i> </button>
-    </form>
-
-    <input type="text" id="amu-search" class="form-control mb-3" />
-
-    <div class="table-responsive bg-white p-2 rounded shadow-sm">
-      <table class="table table-bordered text-center" id="amu-table">
-        <thead><tr><th></th><th></th><th></th><th></th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
   <script>
-    // Language dictionary for Tamil and English
-    const lang = localStorage.getItem('language') || 'en';
-    const dict = {
-      en: {
-        dashboard: 'Dashboard',
-        livestock: 'Livestock',
-        mrl: 'MRL',
-        amuLogs: 'AMU Logs',
-        logout: 'Logout',
-        dashboardWelcome: 'Welcome to FarmPortal Dashboard',
-        dashboardDesc: 'Use navigation above to manage Livestock, MRL, and AMU logs.',
-        manageLivestock: 'Manage Livestock',
-        speciesPlaceholder: 'Species',
-        breedPlaceholder: 'Breed',
-        tagNoPlaceholder: 'Tag No.',
-        addLivestockBtn: 'Add Livestock',
-        searchLivestockPlaceholder: 'Search Livestock...',
-        manageMRL: 'Manage Maximum Residue Limits (MRL)',
-        chemicalPlaceholder: 'Chemical',
-        mrlSpeciesPlaceholder: 'Species',
-        maxResiduePlaceholder: 'Max Residue (mg/kg)',
-        addMRLBtn: 'Add MRL',
-        searchMRLPlaceholder: 'Search MRL...',
-        logAMU: 'Log Antimicrobial Usage (AMU)',
-        amuTagNoPlaceholder: 'Livestock Tag No.',
-        amuChemicalPlaceholder: 'Chemical',
-        amuDatePlaceholder: 'Date',
-        amuDosagePlaceholder: 'Dosage',
-        logAMUBtn: 'Log AMU',
-        searchAMUPlaceholder: 'Search AMU Logs...'
-      },
-      ta: {
-        dashboard: '[டாஷ்போர்டு]',
-        livestock: '[மிருகபாலை]',
-        mrl: '[அதிகபட்ச இருப்பு வரம்புகள்]',
-        amuLogs: '[மருந்து பயன்பாட்டு பதிவுகள்]',
-        logout: '[வெளியேறு]',
-        dashboardWelcome: '[FarmPortal தளத்திற்கு வரவேற்கின்றோம்]',
-        dashboardDesc: '[மேலே உள்ள வழிசெலுத்தலைப் பயன்படுத்தி மிருகபாலை, MRL மற்றும் AMU பதிவுகளை நிர்வகிக்கவும்.]',
-        manageLivestock: '[மிருகபாலை நிர்வகி]',
-        speciesPlaceholder: '[வகை]',
-        breedPlaceholder: '[சீரியல்]',
-        tagNoPlaceholder: '[தொகுதி எண்]',
-        addLivestockBtn: '[மிருகபாலைச் சேர்]',
-        searchLivestockPlaceholder: '[:மிருகபாலைத் தேடு...]',
-        manageMRL: '[அதிகபட்ச இருப்பு அளவு (MRL) நிர்வகி]',
-        chemicalPlaceholder: '[கொழும்பு]',
-        mrlSpeciesPlaceholder: '[வகை]',
-        maxResiduePlaceholder: '[அதிகபட்ச இருப்பு (மி.கி/கி)]',
-        addMRLBtn: '[MRL சேர்க்க]',
-        searchMRLPlaceholder: '[MRL தேடு...]',
-        logAMU: '[மருந்து பயன்பாடு பதிவு]',
-        amuTagNoPlaceholder: '[மிருகபாலை தொகுதி எண்]',
-        amuChemicalPlaceholder: '[மருந்து]',
-        amuDatePlaceholder: '[தேதி]',
-        amuDosagePlaceholder: '[கால அளவு]',
-        logAMUBtn: '[மருந்து பதிவு செய்]',
-        searchAMUPlaceholder: '[AMU பதிவுகளைத் தேடு...]'
+    // CSV parse function (copy from your working code)
+    function parseCSV(str) {
+      const arr = [];
+      let quote = false;
+      for (let row = 0, col = 0, c = 0; c < str.length; c++) {
+        let cc = str[c], nc = str[c+1];
+        arr[row] = arr[row] || [];
+        arr[row][col] = arr[row][col] || '';
+
+        if (cc === '"' && quote && nc === '"') { arr[row][col] += cc; ++c; continue; }
+        if (cc === '"') { quote = !quote; continue; }
+        if (cc === ',' && !quote) { ++col; continue; }
+        if ((cc === '\n' || cc === '\r') && !quote) {
+          ++row;
+          col = 0;
+          if (cc === '\r' && str[c+1] === '\n') ++c;
+          continue;
+        }
+        arr[row][col] += cc;
       }
-    };
-
-    // Function to update UI text based on language
-    function setLanguageUI(lang) {
-      // Navbar
-      document.getElementById('navDashboard').textContent = dict[lang].dashboard;
-      document.getElementById('navLivestock').textContent = dict[lang].livestock;
-      document.getElementById('navMRL').textContent = dict[lang].mrl;
-      document.getElementById('navAMU').textContent = dict[lang].amuLogs;
-      document.getElementById('logout-btn').innerHTML = `<i class="fa fa-sign-out-alt"></i> ${dict[lang].logout}`;
-
-      // Dashboard
-      document.querySelector('#dashboard h2').textContent = dict[lang].dashboardWelcome;
-      document.querySelector('#dashboard p').textContent = dict[lang].dashboardDesc;
-
-      // Livestock Section
-      document.querySelector('#livestock-section h3').textContent = dict[lang].manageLivestock;
-      document.querySelector('#livestock-form input[name="species"]').placeholder = dict[lang].speciesPlaceholder;
-      document.querySelector('#livestock-form input[name="breed"]').placeholder = dict[lang].breedPlaceholder;
-      document.querySelector('#livestock-form input[name="tagNo"]').placeholder = dict[lang].tagNoPlaceholder;
-      document.querySelector('#livestock-form button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].addLivestockBtn}`;
-      document.getElementById('livestock-search').placeholder = dict[lang].searchLivestockPlaceholder;
-
-      // MRL Section
-      document.querySelector('#mrl-section h3').textContent = dict[lang].manageMRL;
-      document.querySelector('#mrl-form input[name="chemical"]').placeholder = dict[lang].chemicalPlaceholder;
-      document.querySelector('#mrl-form input[name="species"]').placeholder = dict[lang].mrlSpeciesPlaceholder;
-      document.querySelector('#mrl-form input[name="maxResidue"]').placeholder = dict[lang].maxResiduePlaceholder;
-      document.querySelector('#mrl-form button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].addMRLBtn}`;
-      document.getElementById('mrl-search').placeholder = dict[lang].searchMRLPlaceholder;
-
-      // AMU Section
-      document.querySelector('#amu-section h3').textContent = dict[lang].logAMU;
-      document.querySelector('#amu-form input[name="tagNo"]').placeholder = dict[lang].amuTagNoPlaceholder;
-      document.querySelector('#amu-form input[name="chemical"]').placeholder = dict[lang].amuChemicalPlaceholder;
-      document.querySelector('#amu-form input[name="date"]').placeholder = dict[lang].amuDatePlaceholder;
-      document.querySelector('#amu-form input[name="dosage"]').placeholder = dict[lang].amuDosagePlaceholder;
-      document.querySelector('#amu-form button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].logAMUBtn}`;
-      document.getElementById('amu-search').placeholder = dict[lang].searchAMUPlaceholder;
+      return arr;
     }
 
-    setLanguageUI(lang);
+    // Your CSV data string here - paste your full data
+    const csvData = `C001,Holstein,450,Oxytetracycline,2000,IM,2025-09-01,5,0.08,0.1,7,28,1
+C002,Jersey,400,Amoxicillin,1500,Oral,2025-09-03,3,0.02,0.05,7,28,1
+C003,Sahiwal,500,Ivermectin,500,SC,2025-09-02,10,0.005,0.01,0,14,0
+C004,Gir,470,Ciprofloxacin,1000,Oral,2025-08-28,12,0.04,0.05,14,35,1
+C005,Holstein,480,Oxytetracycline,2500,IM,2025-09-07,1,0.18,0.1,7,28,1
+C006,Jersey,420,Amoxicillin,2000,IM,2025-09-05,4,0.06,0.05,7,28,1
+C007,Sahiwal,520,Enrofloxacin,1200,Oral,2025-09-06,2,0.03,0.05,10,30,1
+C008,Gir,460,Oxytetracycline,1800,IM,2025-09-08,6,0.09,0.1,7,28,1
+C009,Holstein,455,Ivermectin,600,Oral,2025-09-04,7,0.008,0.01,0,14,0
+C010,Jersey,430,Ciprofloxacin,1100,IM,2025-09-05,8,0.045,0.05,14,35,1
+C011,Holstein,460,Oxytetracycline,2200,IM,2025-09-12,6,0.07,0.1,7,28,1
+C012,Jersey,405,Amoxicillin,1600,Oral,2025-09-14,4,0.03,0.05,7,28,1
+C013,Sahiwal,510,Ivermectin,550,SC,2025-09-10,8,0.012,0.01,0,14,0
+C014,Gir,475,Ciprofloxacin,1200,Oral,2025-09-09,9,0.06,0.05,14,35,1
+C015,Holstein,490,Enrofloxacin,1300,IM,2025-09-15,3,0.04,0.05,10,30,1
+C016,Jersey,415,Amoxicillin,1800,IM,2025-09-13,5,0.07,0.05,7,28,1
+C017,Sahiwal,525,Oxytetracycline,2000,IM,2025-09-11,7,0.09,0.1,7,28,1
+C018,Gir,455,Ivermectin,650,Oral,2025-09-08,10,0.009,0.01,0,14,0
+C019,Holstein,470,Ciprofloxacin,1150,IM,2025-09-07,11,0.055,0.05,14,35,1
+C020,Jersey,435,Enrofloxacin,1250,Oral,2025-09-16,2,0.02,0.05,10,30,1`;
 
-    // Handle tab navigation
-    function showSection(sectionId) {
-      document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active-section'));
-      document.getElementById(sectionId).classList.add('active-section');
+    let medicineLogData = parseCSV(csvData);
 
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      const navMap = {
-        dashboard: 'navDashboard',
-        'livestock-section': 'navLivestock',
-        'mrl-section': 'navMRL',
-        'amu-section': 'navAMU',
-      };
-      if (navMap[sectionId]) document.getElementById(navMap[sectionId]).classList.add('active');
-    }
-    showSection('dashboard');
+    const tbody = document.querySelector('#medicine-log-table tbody');
+    const searchInput = document.getElementById('medicine-log-search');
+    const form = document.getElementById('medicine-form');
 
-    // Navigation click handlers
-    document.getElementById('navDashboard').onclick = e => { e.preventDefault(); showSection('dashboard'); };
-    document.getElementById('navLivestock').onclick = e => { e.preventDefault(); showSection('livestock-section'); };
-    document.getElementById('navMRL').onclick = e => { e.preventDefault(); showSection('mrl-section'); };
-    document.getElementById('navAMU').onclick = e => { e.preventDefault(); showSection('amu-section'); };
-
-    // Logout
-    document.getElementById('logout-btn').onclick = () => {
-      localStorage.removeItem('token');
-      window.location.href = 'login.html';
-    };
-
-    // Data arrays in memory (replace with API calls for persistence)
-    let livestockData = [];
-    let mrlData = [];
-    let amuData = [];
-
-    // Render tables
-    function renderLivestock(data) {
-      const tbody = document.querySelector('#livestock-table tbody');
-      tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.species}</td><td>${row.breed}</td></tr>`).join('');
-    }
-    function renderMRL(data) {
-      const tbody = document.querySelector('#mrl-table tbody');
-      tbody.innerHTML = data.map(row => `<tr><td>${row.chemical}</td><td>${row.species}</td><td>${row.maxResidue}</td></tr>`).join('');
-    }
-    function renderAMU(data) {
-      const tbody = document.querySelector('#amu-table tbody');
-      tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.chemical}</td><td>${row.date}</td><td>${row.dosage}</td></tr>`).join('');
+    function renderTable(data) {
+      tbody.innerHTML = '';
+      data.forEach(row => {
+        const antimicrobialText = row[12] === '1' ? 'Yes' : 'No';
+        const tr = `<tr>
+          <td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td>
+          <td>${row[4]}</td><td>${row[5]}</td><td>${row[6]}</td><td>${row[7]}</td>
+          <td>${row[8]}</td><td>${row[9]}</td><td>${row[10]}</td><td>${row[11]}</td>
+          <td>${antimicrobialText}</td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', tr);
+      });
     }
 
-    // Filter functionality
-    function filterData(data, searchTerm, keys) {
-      searchTerm = searchTerm.toLowerCase();
-      return data.filter(item => keys.some(key => item[key].toLowerCase().includes(searchTerm)));
-    }
+    renderTable(medicineLogData);
 
-    // Livestock form submit
-    document.getElementById('livestock-form').onsubmit = e => {
+    form.onsubmit = e => {
       e.preventDefault();
-      const { species, breed, tagNo } = e.target.elements;
-      livestockData.push({ species: species.value, breed: breed.value, tagNo: tagNo.value });
-      e.target.reset();
-      renderLivestock(livestockData);
+      const f = e.target;
+      const row = [
+        f.cowId.value, f.breed.value, f.weight.value, f.drugName.value,
+        f.dose.value, f.route.value, f.dateAdministered.value, f.daysSince.value,
+        f.residue.value, f.mrl.value, f.withdrawMilk.value, f.withdrawMeat.value,
+        f.isAntimicrobial.value
+      ];
+      medicineLogData.push(row);
+      renderTable(medicineLogData);
+      f.reset();
     };
-    // Livestock search
-    document.getElementById('livestock-search').addEventListener('input', e => {
-      const filtered = filterData(livestockData, e.target.value, ['species', 'breed', 'tagNo']);
-      renderLivestock(filtered);
-    });
 
-    // MRL form submit
-    document.getElementById('mrl-form').onsubmit = e => {
-      e.preventDefault();
-      const { chemical, species, maxResidue } = e.target.elements;
-      mrlData.push({ chemical: chemical.value, species: species.value, maxResidue: maxResidue.value });
-      e.target.reset();
-      renderMRL(mrlData);
-    };
-    // MRL search
-    document.getElementById('mrl-search').addEventListener('input', e => {
-      const filtered = filterData(mrlData, e.target.value, ['chemical', 'species']);
-      renderMRL(filtered);
+    searchInput.addEventListener('input', () => {
+      const term = searchInput.value.toLowerCase();
+      const filtered = medicineLogData.filter(row => row.some(cell => cell.toLowerCase().includes(term)));
+      renderTable(filtered);
     });
-
-    // AMU form submit
-    document.getElementById('amu-form').onsubmit = e => {
-      e.preventDefault();
-      const { tagNo, chemical, date, dosage } = e.target.elements;
-      amuData.push({ tagNo: tagNo.value, chemical: chemical.value, date: date.value, dosage: dosage.value });
-      e.target.reset();
-      renderAMU(amuData);
-    };
-    // AMU search
-    document.getElementById('amu-search').addEventListener('input', e => {
-      const filtered = filterData(amuData, e.target.value, ['tagNo', 'chemical', 'date', 'dosage']);
-      renderAMU(filtered);
-    });
-
-    // Initial table rendering
-    renderLivestock(livestockData);
-    renderMRL(mrlData);
-    renderAMU(amuData);
   </script>
+</div>
+
+
+  <!-- Livestock Section -->
+  <div class="container tab-section" id="livestock-section">
+    <h3 class="mt-3"><i class="fas fa-cow"></i> <span id="manageLivestock"></span></h3>
+    <form id="livestock-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
+      <input type="text" class="form-control mr-2 mb-2" name="species" required placeholder="" />
+      <input type="text" class="form-control mr-2 mb-2" name="breed" required placeholder="" />
+      <input type="text" class="form-control mr-2 mb-2" name="tagNo" required placeholder="" />
+      <button type="submit" class="btn btn-success mb-2"><i class="fas fa-plus"></i> <span id="addLivestockBtn"></span></button>
+    </form>
+    <input type="text" id="livestock-search" class="form-control mb-3" placeholder="" />
+    <div class="table-responsive bg-white p-2 rounded shadow-sm">
+      <table class="table table-bordered text-center" id="livestock-table">
+        <thead><tr><th>Tag No.</th><th>Species</th><th>Breed</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MRL Section -->
+  <div class="container tab-section" id="mrl-section">
+    <h3 class="mt-3"><i class="fas fa-vial"></i> <span id="manageMRL"></span></h3>
+    <form id="mrl-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
+      <input type="text" class="form-control mr-2 mb-2" name="chemical" required placeholder="" />
+      <input type="text" class="form-control mr-2 mb-2" name="species" required placeholder="" />
+      <input type="number" class="form-control mr-2 mb-2" name="maxResidue" step="0.01" required placeholder="" />
+      <button type="submit" class="btn btn-warning text-white mb-2"><i class="fas fa-plus"></i> <span id="addMRLBtn"></span></button>
+    </form>
+    <input type="text" id="mrl-search" class="form-control mb-3" placeholder="" />
+    <div class="table-responsive bg-white p-2 rounded shadow-sm">
+      <table class="table table-bordered text-center" id="mrl-table">
+        <thead><tr><th>Chemical</th><th>Species</th><th>Max Residue</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AMU Section -->
+  <div class="container tab-section" id="amu-section">
+    <h3 class="mt-3"><i class="fas fa-syringe"></i> <span id="logAMU"></span></h3>
+    <form id="amu-form" class="form-inline mb-3 bg-white p-3 rounded shadow-sm">
+      <input type="text" class="form-control mr-2 mb-2" name="tagNo" required placeholder="" />
+      <input type="text" class="form-control mr-2 mb-2" name="chemical" required placeholder="" />
+      <input type="date" class="form-control mr-2 mb-2" name="date" required />
+      <input type="text" class="form-control mr-2 mb-2" name="dosage" required placeholder="" />
+      <button type="submit" class="btn btn-danger mb-2"><i class="fas fa-plus"></i> <span id="logAMUBtn"></span></button>
+    </form>
+    <input type="text" id="amu-search" class="form-control mb-3" placeholder="" />
+    <div class="table-responsive bg-white p-2 rounded shadow-sm">
+      <table class="table table-bordered text-center" id="amu-table">
+        <thead><tr><th>Tag No.</th><th>Chemical</th><th>Date</th><th>Dosage</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const language = localStorage.getItem('language') || 'en';
+
+    const dict = {
+      en: {
+        dashboard: 'Dashboard',
+        livestock: 'Livestock',
+        mrl: 'MRL',
+        amuLogs: 'AMU Logs',
+        logout: 'Logout',
+        dashboardWelcome: 'Welcome to FarmPortal Dashboard',
+        dashboardDesc: 'Use navigation above to manage Livestock, MRL, and AMU logs.',
+        manageLivestock: 'Manage Livestock',
+        speciesPlaceholder: 'Species',
+        breedPlaceholder: 'Breed',
+        tagNoPlaceholder: 'Tag No.',
+        addLivestockBtn: 'Add Livestock',
+        searchLivestockPlaceholder: 'Search Livestock...',
+        manageMRL: 'Manage Maximum Residue Limits (MRL)',
+        chemicalPlaceholder: 'Chemical',
+        mrlSpeciesPlaceholder: 'Species',
+        maxResiduePlaceholder: 'Max Residue (mg/kg)',
+        addMRLBtn: 'Add MRL',
+        searchMRLPlaceholder: 'Search MRL...',
+        logAMU: 'Log Antimicrobial Usage (AMU)',
+        amuTagNoPlaceholder: 'Livestock Tag No.',
+        amuChemicalPlaceholder: 'Chemical',
+        amuDatePlaceholder: 'Date',
+        amuDosagePlaceholder: 'Dosage',
+        logAMUBtn: 'Log AMU',
+        searchAMUPlaceholder: 'Search AMU Logs...'
+      },
+      ta: {
+        dashboard: '[டாஷ்போர்டு]',
+        livestock: '[மிருகபாலை]',
+        mrl: '[அதிகபட்ச இருப்பு வரம்புகள்]',
+        amuLogs: '[மருந்து பயன்பாட்டு பதிவுகள்]',
+        logout: '[வெளியேறு]',
+        dashboardWelcome: '[FarmPortal தளத்திற்கு வரவேற்கின்றோம்]',
+        dashboardDesc: '[மேலே உள்ள வழிசெலுத்தலைப் பயன்படுத்தி மிருகபாலை, MRL மற்றும் AMU பதிவுகளை நிர்வகிக்கவும்.]',
+        manageLivestock: '[மிருகபாலை நிர்வகி]',
+        speciesPlaceholder: '[வகை]',
+        breedPlaceholder: '[சீரியல்]',
+        tagNoPlaceholder: '[தொகுதி எண்]',
+        addLivestockBtn: '[மிருகபாலைச் சேர்]',
+        searchLivestockPlaceholder: '[:மிருகபாலைத் தேடு...]',
+        manageMRL: '[அதிகபட்ச இருப்பு அளவு (MRL) நிர்வகி]',
+        chemicalPlaceholder: '[கொழும்பு]',
+        mrlSpeciesPlaceholder: '[வகை]',
+        maxResiduePlaceholder: '[அதிகபட்ச இருப்பு (மி.கி/கி)]',
+        addMRLBtn: '[MRL சேர்க்க]',
+        searchMRLPlaceholder: '[MRL தேடு...]',
+        logAMU: '[மருந்து பயன்பாடு பதிவு]',
+        amuTagNoPlaceholder: '[மிருகபாலை தொகுதி எண்]',
+        amuChemicalPlaceholder: '[மருந்து]',
+        amuDatePlaceholder: '[தேதி]',
+        amuDosagePlaceholder: '[கால அளவு]',
+        logAMUBtn: '[மருந்து பதிவு செய்]',
+        searchAMUPlaceholder: '[AMU பதிவுகளைத் தேடு...]'
+      }
+    };
+
+    function setTexts(lang) {
+      document.getElementById('navDashboard').innerHTML = `<i class="fas fa-tachometer-alt"></i> ${dict[lang].dashboard}`;
+      document.getElementById('navLivestock').innerHTML = `<i class="fas fa-cow"></i> ${dict[lang].livestock}`;
+      document.getElementById('navMRL').innerHTML = `<i class="fas fa-vial"></i> ${dict[lang].mrl}`;
+      document.getElementById('navAMU').innerHTML = `<i class="fas fa-syringe"></i> ${dict[lang].amuLogs}`;
+      document.getElementById('logoutText').textContent = dict[lang].logout;
+      document.getElementById('dashboardTitle').textContent = dict[lang].dashboardWelcome;
+      document.getElementById('dashboardDesc').textContent = dict[lang].dashboardDesc;
+      document.getElementById('manageLivestock').textContent = dict[lang].manageLivestock;
+      const livestockForm = document.getElementById('livestock-form');
+      livestockForm.species.placeholder = dict[lang].speciesPlaceholder;
+      livestockForm.breed.placeholder = dict[lang].breedPlaceholder;
+      livestockForm.tagNo.placeholder = dict[lang].tagNoPlaceholder;
+      livestockForm.querySelector('button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].addLivestockBtn}`;
+      document.getElementById('livestock-search').placeholder = dict[lang].searchLivestockPlaceholder;
+      document.getElementById('manageMRL').textContent = dict[lang].manageMRL;
+      const mrlForm = document.getElementById('mrl-form');
+      mrlForm.chemical.placeholder = dict[lang].chemicalPlaceholder;
+      mrlForm.species.placeholder = dict[lang].mrlSpeciesPlaceholder;
+      mrlForm.maxResidue.placeholder = dict[lang].maxResiduePlaceholder;
+      mrlForm.querySelector('button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].addMRLBtn}`;
+      document.getElementById('mrl-search').placeholder = dict[lang].searchMRLPlaceholder;
+      document.getElementById('logAMU').textContent = dict[lang].logAMU;
+      const amuForm = document.getElementById('amu-form');
+      amuForm.tagNo.placeholder = dict[lang].amuTagNoPlaceholder;
+      amuForm.chemical.placeholder = dict[lang].amuChemicalPlaceholder;
+      amuForm.date.placeholder = dict[lang].amuDatePlaceholder;
+      amuForm.dosage.placeholder = dict[lang].amuDosagePlaceholder;
+      amuForm.querySelector('button').innerHTML = `<i class="fas fa-plus"></i> ${dict[lang].logAMUBtn}`;
+      document.getElementById('amu-search').placeholder = dict[lang].searchAMUPlaceholder;
+    }
+
+    setTexts(language);
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active-section'));
+      document.getElementById(sectionId).classList.add('active-section');
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      const navMap = {
+        dashboard: 'navDashboard',
+        'livestock-section': 'navLivestock',
+        'mrl-section': 'navMRL',
+        'amu-section': 'navAMU',
+        'medicine-log-section': 'navMedicineLog'
+      };
+      if (navMap[sectionId]) document.getElementById(navMap[sectionId]).classList.add('active');
+    }
+    showSection('dashboard');
+    document.getElementById('navDashboard').onclick = e => { e.preventDefault(); showSection('dashboard'); };
+    document.getElementById('navLivestock').onclick = e => { e.preventDefault(); showSection('livestock-section'); };
+    document.getElementById('navMRL').onclick = e => { e.preventDefault(); showSection('mrl-section'); };
+    document.getElementById('navAMU').onclick = e => { e.preventDefault(); showSection('amu-section'); };
+    document.getElementById('navMedicineLog').onclick = e => { e.preventDefault(); showSection('medicine-log-section'); };
+    document.getElementById('logout-btn').onclick = () => {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    };
+
+    let livestockData = [];
+    let mrlData = [];
+    let amuData = [];
+
+    function renderLivestock(data) {
+      const tbody = document.querySelector('#livestock-table tbody');
+      tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.species}</td><td>${row.breed}</td></tr>`).join('');
+    }
+    function renderMRL(data) {
+      const tbody = document.querySelector('#mrl-table tbody');
+      tbody.innerHTML = data.map(row => `<tr><td>${row.chemical}</td><td>${row.species}</td><td>${row.maxResidue}</td></tr>`).join('');
+    }
+    function renderAMU(data) {
+      const tbody = document.querySelector('#amu-table tbody');
+      tbody.innerHTML = data.map(row => `<tr><td>${row.tagNo}</td><td>${row.chemical}</td><td>${row.date}</td><td>${row.dosage}</td></tr>`).join('');
+    }
+
+    function filterData(data, searchTerm, keys) {
+      searchTerm = searchTerm.toLowerCase();
+      return data.filter(item => keys.some(key => (item[key] || '').toString().toLowerCase().includes(searchTerm)));
+    }
+
+    document.getElementById('livestock-form').onsubmit = e => {
+      e.preventDefault();
+      const { species, breed, tagNo } = e.target.elements;
+      livestockData.push({ species: species.value, breed: breed.value, tagNo: tagNo.value });
+      e.target.reset();
+      renderLivestock(livestockData);
+    };
+    document.getElementById('livestock-search').addEventListener('input', e => {
+      const filtered = filterData(livestockData, e.target.value, ['species', 'breed', 'tagNo']);
+      renderLivestock(filtered);
+    });
+    document.getElementById('mrl-form').onsubmit = e => {
+      e.preventDefault();
+      const { chemical, species, maxResidue } = e.target.elements;
+      mrlData.push({ chemical: chemical.value, species: species.value, maxResidue: maxResidue.value });
+      e.target.reset();
+      renderMRL(mrlData);
+    };
+    document.getElementById('mrl-search').addEventListener('input', e => {
+      const filtered = filterData(mrlData, e.target.value, ['chemical', 'species']);
+      renderMRL(filtered);
+    });
+    document.getElementById('amu-form').onsubmit = e => {
+      e.preventDefault();
+      const { tagNo, chemical, date, dosage } = e.target.elements;
+      amuData.push({ tagNo: tagNo.value, chemical: chemical.value, date: date.value, dosage: dosage.value });
+      e.target.reset();
+      renderAMU(amuData);
+    };
+    document.getElementById('amu-search').addEventListener('input', e => {
+      const filtered = filterData(amuData, e.target.value, ['tagNo', 'chemical', 'date', 'dosage']);
+      renderAMU(filtered);
+    });
+
+    renderLivestock(livestockData);
+    renderMRL(mrlData);
+    renderAMU(amuData);
+  </script>
 </body>
 </html>
