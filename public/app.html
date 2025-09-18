@@ -158,11 +158,12 @@
     // Send to backend (change URL if needed)
     let response;
     try {
-      response = await fetch('/api/amus', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(amuLog)
-      });
+      response = await fetch('http://localhost:5000/api/amu', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(amuLog)
+});
+
     } catch (err) {
       alert('Failed to connect to backend!');
       return;
@@ -182,7 +183,7 @@
   // Example:
   async function fetchAndRenderAMULogs() {
     try {
-      const res = await fetch('/api/amus');
+      const res = await fetch('/api/amu');
       if (!res.ok) return;
       const logs = await res.json();
       renderAMU(logs);

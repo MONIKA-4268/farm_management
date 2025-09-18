@@ -3,8 +3,15 @@ const jwt = require('jsonwebtoken');
 // JWT Authentication middleware
 function auth(req, res, next) {
   const authHeader = req.header('Authorization');
-  const token = authHeader && authHeader.split(' ')[1]; // Format: Bearer <token>
+  if (!authHeader) return res.status(401).json({ message: 'Access denied. No Authorization header.' });
 
+  // Expected format: "Bearer <token>"
+  const parts = authHeader.split(' ');
+  if (parts.length !== 2 || parts[0] !== 'Bearer') {
+    return res.status(400).json({ message: 'Malformed token. Expected format: Bearer <token>' });
+  }
+
+  const token = parts[1];
   if (!token) return res.status(401).json({ message: 'Access denied. No token provided.' });
 
   try {
@@ -12,7 +19,7 @@ function auth(req, res, next) {
     req.user = decoded; // Attach user info to request
     next();
   } catch (err) {
-    res.status(400).json({ message: 'Invalid token.' });
+    res.status(401).json({ message: 'Invalid token.' });
   }
 }
 

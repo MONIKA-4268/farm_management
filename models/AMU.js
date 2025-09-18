@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 const amuSchema = new mongoose.Schema({
-  livestock: { type: mongoose.Schema.Types.ObjectId, ref: 'Livestock' },
-  chemical: { type: mongoose.Schema.Types.ObjectId, ref: 'Chemical' },
-  dosage: String,
+  tagNo: { type: String, required: true },
+  chemical: { type: mongoose.Schema.Types.ObjectId, ref: 'Chemical', required: true },
+  dosage: { type: String, required: true },
+  date: { type: Date, required: true },
   startDate: Date,
   endDate: Date,
   treatmentReason: String,
