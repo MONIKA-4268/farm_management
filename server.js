@@ -31,7 +31,7 @@ mongoose.connect(mongoUri)
     process.exit(1);
   });
 
-// API routes (order matters, declare before catch-all)
+// API routes (declare before catch-all)
 app.use('/api/auth', authRoutes);
 
 app.use('/api/mrl', mrlRoutes);
@@ -42,8 +42,13 @@ app.use('/api/medicine', medicineRoutes);
 // Serve frontend static files from 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// For all other routes, serve index.html for SPA routing
-app.get('*', (req, res) => {
+// Optional root route for API health check
+app.get('/api', (req, res) => {
+  res.send('Backend API running');
+});
+
+// Catch-all route for SPA routing: serve index.html
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -51,8 +56,5 @@ const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-app.get('/', (req, res) => {
-  res.send('Backend API running');
-});
- 
+
 module.exports = app;
