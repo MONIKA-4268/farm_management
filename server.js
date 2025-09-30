@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// Import routes
 const authRoutes = require('./routes/auth');
 const livestockRoutes = require('./routes/livestock');
 const chemicalRoutes = require('./routes/chemical');
@@ -16,8 +17,8 @@ const medicineRoutes = require('./routes/medicineRoutes');
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable CORS for all origins
-app.use(express.json()); // Parse JSON bodies from requests
+app.use(cors()); // Enable CORS
+app.use(express.json()); // Parse JSON bodies
 
 // MongoDB connection with retry logic
 async function connectDB() {
@@ -25,12 +26,18 @@ async function connectDB() {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('✅ MongoDB connected');
   } catch (err) {
-    console.error('❌ MongoDB connection error:', err.message);
-    // Retry connection after 5 seconds
-    setTimeout(connectDB, 10000);
+    console.error('❌ MongoDB connection error:', err.message, 'Retrying in 10s...');
+    setTimeout(connectDB, 10000); // Retry after 10 seconds
   }
 }
 connectDB();
+
+// Graceful shutdown
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  console.log('🔌 MongoDB connection closed due to app termination');
+  process.exit(0);
+});
 
 // Mount routes
 app.use('/api/auth', authRoutes);
