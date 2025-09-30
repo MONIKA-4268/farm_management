@@ -19,10 +19,18 @@ const app = express();
 app.use(cors()); // Enable CORS for all origins
 app.use(express.json()); // Parse JSON bodies from requests
 
-// Connect to MongoDB Atlas using URI from environment variables
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+// MongoDB connection with retry logic
+async function connectDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('✅ MongoDB connected');
+  } catch (err) {
+    console.error('❌ MongoDB connection error:', err.message);
+    // Retry connection after 5 seconds
+    setTimeout(connectDB, 10000);
+  }
+}
+connectDB();
 
 // Mount routes
 app.use('/api/auth', authRoutes);
@@ -34,7 +42,7 @@ app.use('/api/cows', cowsRoutes);
 app.use('/api/medicine', medicineRoutes);
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
